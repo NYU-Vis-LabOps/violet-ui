@@ -359,7 +359,7 @@ function main() {
   const index = {
     $schema: "https://ui.shadcn.com/schema/registry.json",
     name: "violet-ui",
-    homepage: "https://github.com/yihui-hu/violet-ui",
+    homepage: "https://github.com/NYU-Vis-LabOps/violet-ui",
     items: indexItems,
   }
   fs.writeFileSync(path.join(PUBLIC_R, "index.json"), JSON.stringify(index, null, 2))

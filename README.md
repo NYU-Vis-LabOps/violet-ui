@@ -7,20 +7,20 @@ NYU branded [shadcn/ui](https://ui.shadcn.com) custom component registry. Instal
 ### Install the theme
 
 ```bash
-npx shadcn@latest add https://yihui-hu.github.io/violet-ui/r/styles/violet-theme.json
+npx shadcn@latest add https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json
 ```
 
 ### Install components
 
 ```bash
 # Single component
-npx shadcn@latest add https://yihui-hu.github.io/violet-ui/r/ui/violet-button.json
+npx shadcn@latest add https://nyu-vis-labops.github.io/violet-ui/r/ui/violet-button.json
 
 # Multiple components
 npx shadcn@latest add \
-  https://yihui-hu.github.io/violet-ui/r/ui/violet-button.json \
-  https://yihui-hu.github.io/violet-ui/r/ui/violet-card.json \
-  https://yihui-hu.github.io/violet-ui/r/ui/violet-badge.json
+  https://nyu-vis-labops.github.io/violet-ui/r/ui/violet-button.json \
+  https://nyu-vis-labops.github.io/violet-ui/r/ui/violet-card.json \
+  https://nyu-vis-labops.github.io/violet-ui/r/ui/violet-badge.json
 ```
 
 ## Components
