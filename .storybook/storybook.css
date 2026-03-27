@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@import "../styles/violet-theme.css";
+
+@custom-variant dark (&:is(.dark *));

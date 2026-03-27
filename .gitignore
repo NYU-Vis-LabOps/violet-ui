@@ -1,6 +1,8 @@
 node_modules/
 dist/
 public/r/
+public/storybook/
+storybook-static/
 *.tsbuildinfo
 .claude/
 NUL

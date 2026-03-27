@@ -328,7 +328,7 @@ function main() {
   // 3. Build components
   const componentsDir = path.join(ROOT, "src", "components")
   if (fs.existsSync(componentsDir)) {
-    const files = fs.readdirSync(componentsDir).filter((f) => f.endsWith(".tsx"))
+    const files = fs.readdirSync(componentsDir).filter((f) => f.endsWith(".tsx") && !f.includes(".stories."))
     for (const file of files) {
       const item = buildComponent(file)
       fs.writeFileSync(
