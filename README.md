@@ -47,7 +47,7 @@ import { VioletStatusBadge } from "@/components/ui/violet-status-badge"
 
 export function Dashboard() {
   return (
-    <VioletCard variant="bordered" borderColor="#28a745">
+    <VioletCard variant="bordered">
       <CardHeader>
         <CardTitle>Lab Status</CardTitle>
       </CardHeader>
