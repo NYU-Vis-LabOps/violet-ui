@@ -37,7 +37,7 @@ const VioletNavbar = React.forwardRef<HTMLElement, VioletNavbarProps>(
       <nav
         ref={ref}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 h-16 bg-primary flex items-center px-4 md:px-6",
+          "fixed top-0 left-0 right-0 z-50 h-12 bg-primary flex items-center px-4 md:px-6 shadow-md",
           className
         )}
         {...props}
@@ -51,7 +51,7 @@ const VioletNavbar = React.forwardRef<HTMLElement, VioletNavbarProps>(
             <a
               key={link.href}
               href={link.href}
-              className="text-primary-foreground text-xs font-medium uppercase tracking-wide hover:text-primary-foreground/80 transition-colors"
+              className="text-primary-foreground/80 text-sm font-medium hover:text-primary-foreground transition-colors duration-150"
               {...(link.external
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
@@ -116,12 +116,12 @@ const VioletNavbar = React.forwardRef<HTMLElement, VioletNavbarProps>(
 
         {/* Mobile panel */}
         {mobileOpen && (
-          <div className="absolute top-16 left-0 right-0 bg-primary md:hidden flex flex-col p-6 gap-4 min-h-[calc(100vh-4rem)]">
+          <div className="absolute top-12 left-0 right-0 bg-primary md:hidden flex flex-col p-5 gap-3 min-h-[calc(100vh-3rem)] shadow-lg">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-primary-foreground text-sm font-medium uppercase tracking-wide py-2"
+                className="text-primary-foreground/80 text-sm font-medium hover:text-primary-foreground py-2 transition-colors"
                 {...(link.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}

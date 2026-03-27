@@ -25,7 +25,7 @@ const VioletModalOverlay = React.forwardRef<
 VioletModalOverlay.displayName = "VioletModalOverlay"
 
 const modalContentVariants = cva(
-  "fixed left-[50%] top-[50%] z-50 grid w-full translate-x-[-50%] translate-y-[-50%] gap-4 border border-border bg-card shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-lg",
+  "fixed left-[50%] top-[50%] z-50 grid w-full translate-x-[-50%] translate-y-[-50%] gap-3 border border-border bg-card shadow-xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-lg",
   {
     variants: {
       size: {
@@ -87,7 +87,7 @@ const ModalHeader = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-col space-y-1.5 p-6 border-b border-border",
+      "flex flex-col space-y-1 p-5 border-b border-border",
       className
     )}
     {...props}
@@ -101,7 +101,7 @@ const ModalTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h2
     ref={ref}
-    className={cn("text-lg font-semibold leading-none tracking-tight", className)}
+    className={cn("text-lg font-semibold leading-snug tracking-tight", className)}
     {...props}
   />
 ))
@@ -113,7 +113,7 @@ const ModalDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
+    className={cn("text-sm leading-relaxed text-muted-foreground", className)}
     {...props}
   />
 ))
@@ -125,7 +125,7 @@ const ModalBody = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("p-6 overflow-y-auto max-h-[60vh]", className)}
+    className={cn("p-5 overflow-y-auto max-h-[60vh]", className)}
     {...props}
   />
 ))
@@ -138,7 +138,7 @@ const ModalFooter = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex items-center justify-end space-x-2 p-6 border-t border-border",
+      "flex items-center justify-end space-x-2 p-5 border-t border-border",
       className
     )}
     {...props}

@@ -43,7 +43,7 @@ const VioletStatusBadge = React.forwardRef<
       ref={ref}
       role="status"
       className={cn(
-        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold",
+        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold tracking-wide",
         config.className,
         className
       )}
