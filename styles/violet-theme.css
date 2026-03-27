@@ -26,6 +26,15 @@
     --input: 220 13% 91%;
     --ring: 275 90% 29%;
     --radius: 0.375rem;
+
+    /* Status tint backgrounds (light bg + saturated text) */
+    --status-neutral: 210 14% 93%;
+    --status-neutral-foreground: 215 14% 46%;
+    --info-tint: 207 88% 94%;
+    --warning-tint: 45 100% 90%;
+    --warning-tint-foreground: 28 98% 54%;
+    --destructive-tint: 354 71% 91%;
+    --success-tint: 134 41% 88%;
   }
 
   .dark {
@@ -55,5 +64,14 @@
     --input: 270 10% 20%;
     --ring: 275 60% 65%;
     --radius: 0.375rem;
+
+    /* Status tint backgrounds (dark mode) */
+    --status-neutral: 270 10% 18%;
+    --status-neutral-foreground: 270 5% 60%;
+    --info-tint: 211 60% 18%;
+    --warning-tint: 45 60% 18%;
+    --warning-tint-foreground: 28 90% 60%;
+    --destructive-tint: 354 50% 18%;
+    --success-tint: 134 40% 18%;
   }
 }

@@ -25,7 +25,7 @@ const VioletAccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:text-primary [&[data-state=open]]:text-primary [&[data-state=open]>svg]:rotate-180",
+        "flex flex-1 items-center justify-between py-4 font-medium transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm [&[data-state=open]]:text-primary [&[data-state=open]>svg]:rotate-180",
         className
       )}
       {...props}

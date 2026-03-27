@@ -5,23 +5,23 @@ import { cn } from "@/lib/utils"
 const STATUS_CONFIG = {
   "not-started": {
     label: "Not Started",
-    className: "bg-[#e9ecef] text-[#6c757d]",
+    className: "bg-status-neutral text-status-neutral-foreground",
   },
   "in-progress": {
     label: "In Progress",
-    className: "bg-[#e3f2fd] text-[#007bff]",
+    className: "bg-info-tint text-info",
   },
   "due-soon": {
     label: "Due Soon",
-    className: "bg-[#fff3cd] text-[#fd7e14]",
+    className: "bg-warning-tint text-warning-tint-foreground",
   },
   overdue: {
     label: "Overdue",
-    className: "bg-[#f8d7da] text-[#dc3545]",
+    className: "bg-destructive-tint text-destructive",
   },
   completed: {
     label: "Completed",
-    className: "bg-[#d4edda] text-[#28a745]",
+    className: "bg-success-tint text-success",
   },
 } as const
 
@@ -41,6 +41,7 @@ const VioletStatusBadge = React.forwardRef<
   return (
     <span
       ref={ref}
+      role="status"
       className={cn(
         "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold",
         config.className,

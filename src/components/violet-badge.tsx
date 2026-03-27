@@ -10,10 +10,10 @@ const violetBadgeVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground",
         secondary: "bg-muted text-foreground",
-        success: "bg-[hsl(var(--success))] text-[hsl(var(--success-foreground))]",
+        success: "bg-success text-success-foreground",
         destructive: "bg-destructive text-destructive-foreground",
-        warning: "bg-[hsl(var(--warning))] text-[hsl(var(--warning-foreground))]",
-        info: "bg-[hsl(var(--info))] text-[hsl(var(--info-foreground))]",
+        warning: "bg-warning text-warning-foreground",
+        info: "bg-info text-info-foreground",
         outline: "border border-border bg-transparent text-foreground",
       },
     },
@@ -24,13 +24,13 @@ const violetBadgeVariants = cva(
 )
 
 export interface VioletBadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof violetBadgeVariants> {}
 
-const VioletBadge = React.forwardRef<HTMLDivElement, VioletBadgeProps>(
+const VioletBadge = React.forwardRef<HTMLSpanElement, VioletBadgeProps>(
   ({ className, variant, ...props }, ref) => {
     return (
-      <div
+      <span
         ref={ref}
         className={cn(violetBadgeVariants({ variant, className }))}
         {...props}

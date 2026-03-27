@@ -37,7 +37,7 @@ const VioletNavbar = React.forwardRef<HTMLElement, VioletNavbarProps>(
       <nav
         ref={ref}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 h-16 bg-primary backdrop-blur-md flex items-center px-4 md:px-6",
+          "fixed top-0 left-0 right-0 z-50 h-16 bg-primary flex items-center px-4 md:px-6",
           className
         )}
         {...props}
@@ -51,7 +51,7 @@ const VioletNavbar = React.forwardRef<HTMLElement, VioletNavbarProps>(
             <a
               key={link.href}
               href={link.href}
-              className="text-primary-foreground text-xs font-medium uppercase tracking-wide hover:opacity-80 transition-opacity"
+              className="text-primary-foreground text-xs font-medium uppercase tracking-wide hover:text-primary-foreground/80 transition-colors"
               {...(link.external
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
@@ -73,7 +73,7 @@ const VioletNavbar = React.forwardRef<HTMLElement, VioletNavbarProps>(
                 className="h-8 w-8 rounded-full object-cover"
               />
             ) : (
-              <div className="h-8 w-8 rounded-full bg-[#ab82c5] flex items-center justify-center text-xs font-semibold text-white">
+              <div className="h-8 w-8 rounded-full bg-accent flex items-center justify-center text-xs font-semibold text-accent-foreground">
                 {initials}
               </div>
             )}
@@ -116,7 +116,7 @@ const VioletNavbar = React.forwardRef<HTMLElement, VioletNavbarProps>(
 
         {/* Mobile panel */}
         {mobileOpen && (
-          <div className="absolute top-16 left-0 right-0 bg-gradient-to-b from-primary to-[hsl(274,100%,16%)] md:hidden flex flex-col p-6 gap-4 min-h-[calc(100vh-4rem)]">
+          <div className="absolute top-16 left-0 right-0 bg-primary md:hidden flex flex-col p-6 gap-4 min-h-[calc(100vh-4rem)]">
             {links.map((link) => (
               <a
                 key={link.href}
@@ -130,7 +130,7 @@ const VioletNavbar = React.forwardRef<HTMLElement, VioletNavbarProps>(
               </a>
             ))}
             {user && (
-              <div className="mt-auto flex items-center gap-3 pt-6 border-t border-white/20">
+              <div className="mt-auto flex items-center gap-3 pt-6 border-t border-primary-foreground/20">
                 {user.avatar ? (
                   <img
                     src={user.avatar}
@@ -138,7 +138,7 @@ const VioletNavbar = React.forwardRef<HTMLElement, VioletNavbarProps>(
                     className="h-10 w-10 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="h-10 w-10 rounded-full bg-[#ab82c5] flex items-center justify-center text-sm font-semibold text-white">
+                  <div className="h-10 w-10 rounded-full bg-accent flex items-center justify-center text-sm font-semibold text-accent-foreground">
                     {initials}
                   </div>
                 )}
