@@ -15,6 +15,7 @@ const config: StorybookConfig = {
   viteFinal(config) {
     config.plugins = config.plugins || []
     config.plugins.push(tailwindcss())
+    config.publicDir = false
     config.resolve = config.resolve || {}
     config.resolve.alias = {
       ...config.resolve.alias,
