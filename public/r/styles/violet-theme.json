@@ -1,0 +1,91 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-theme",
+  "type": "registry:style",
+  "title": "Violet Theme",
+  "description": "NYU branded theme with purple color palette, Inter font, and CSS variables",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "styles/violet-theme.css",
+      "type": "registry:style",
+      "content": "/* Tailwind v4 theme mappings for violet-ui custom tokens.\n   Standard shadcn tokens (--color-primary, etc.) are already mapped\n   by the consumer's globals.css — this block adds violet-ui extras. */\n@theme inline {\n  /* Status tint colors (used by violet-status-badge) */\n  --color-status-neutral: hsl(var(--status-neutral));\n  --color-status-neutral-foreground: hsl(var(--status-neutral-foreground));\n  --color-info-tint: hsl(var(--info-tint));\n  --color-warning-tint: hsl(var(--warning-tint));\n  --color-warning-tint-foreground: hsl(var(--warning-tint-foreground));\n  --color-destructive-tint: hsl(var(--destructive-tint));\n  --color-success-tint: hsl(var(--success-tint));\n\n  /* Semantic colors not in standard shadcn */\n  --color-success: hsl(var(--success));\n  --color-success-foreground: hsl(var(--success-foreground));\n  --color-warning: hsl(var(--warning));\n  --color-warning-foreground: hsl(var(--warning-foreground));\n  --color-info: hsl(var(--info));\n  --color-info-foreground: hsl(var(--info-foreground));\n\n  /* Layered shadows (Linear-style depth) */\n  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.03);\n  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04), 0 1px 4px -1px rgb(0 0 0 / 0.07);\n  --shadow-md: 0 2px 4px -1px rgb(0 0 0 / 0.06), 0 4px 8px -2px rgb(0 0 0 / 0.1);\n  --shadow-lg: 0 4px 6px -2px rgb(0 0 0 / 0.05), 0 10px 22px -4px rgb(0 0 0 / 0.12);\n  --shadow-xl: 0 8px 12px -4px rgb(0 0 0 / 0.05), 0 20px 40px -8px rgb(0 0 0 / 0.15);\n}\n\n@layer base {\n  :root {\n    --background: 220 14% 96%;\n    --foreground: 0 0% 20%;\n    --card: 0 0% 100%;\n    --card-foreground: 0 0% 20%;\n    --popover: 0 0% 100%;\n    --popover-foreground: 0 0% 20%;\n    --primary: 275 90% 29%;\n    --primary-foreground: 0 0% 100%;\n    --secondary: 270 45% 52%;\n    --secondary-foreground: 0 0% 100%;\n    --muted: 220 14% 96%;\n    --muted-foreground: 215 14% 46%;\n    --accent: 280 30% 64%;\n    --accent-foreground: 0 0% 100%;\n    --destructive: 354 70% 54%;\n    --destructive-foreground: 0 0% 100%;\n    --success: 134 61% 41%;\n    --success-foreground: 0 0% 100%;\n    --warning: 45 100% 51%;\n    --warning-foreground: 0 0% 20%;\n    --info: 211 100% 50%;\n    --info-foreground: 0 0% 100%;\n    --border: 220 13% 91%;\n    --input: 220 13% 91%;\n    --ring: 275 90% 29%;\n    --radius: 0.375rem;\n\n    /* Status tint backgrounds (light bg + saturated text) */\n    --status-neutral: 210 14% 93%;\n    --status-neutral-foreground: 215 14% 46%;\n    --info-tint: 207 88% 94%;\n    --warning-tint: 45 100% 90%;\n    --warning-tint-foreground: 28 98% 54%;\n    --destructive-tint: 354 71% 91%;\n    --success-tint: 134 41% 88%;\n  }\n\n  .dark {\n    --background: 270 10% 8%;\n    --foreground: 0 0% 95%;\n    --card: 270 10% 12%;\n    --card-foreground: 0 0% 95%;\n    --popover: 270 10% 12%;\n    --popover-foreground: 0 0% 95%;\n    --primary: 275 60% 65%;\n    --primary-foreground: 270 90% 10%;\n    --secondary: 270 30% 40%;\n    --secondary-foreground: 0 0% 100%;\n    --muted: 270 10% 15%;\n    --muted-foreground: 270 5% 60%;\n    --accent: 280 25% 50%;\n    --accent-foreground: 0 0% 100%;\n    --destructive: 354 70% 54%;\n    --destructive-foreground: 0 0% 100%;\n    --success: 134 61% 41%;\n    --success-foreground: 0 0% 100%;\n    --warning: 45 100% 51%;\n    --warning-foreground: 0 0% 20%;\n    --info: 211 100% 60%;\n    --info-foreground: 0 0% 100%;\n    --border: 270 10% 20%;\n    --input: 270 10% 20%;\n    --ring: 275 60% 65%;\n    --radius: 0.375rem;\n\n    /* Status tint backgrounds (dark mode) */\n    --status-neutral: 270 10% 18%;\n    --status-neutral-foreground: 270 5% 60%;\n    --info-tint: 211 60% 18%;\n    --warning-tint: 45 60% 18%;\n    --warning-tint-foreground: 28 90% 60%;\n    --destructive-tint: 354 50% 18%;\n    --success-tint: 134 40% 18%;\n  }\n}\n"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "primary": "275 90% 29%",
+      "primary-foreground": "0 0% 100%",
+      "secondary": "270 45% 52%",
+      "secondary-foreground": "0 0% 100%",
+      "accent": "280 30% 64%",
+      "accent-foreground": "0 0% 100%",
+      "background": "220 14% 96%",
+      "foreground": "0 0% 20%",
+      "card": "0 0% 100%",
+      "card-foreground": "0 0% 20%",
+      "border": "220 13% 91%",
+      "muted": "220 14% 96%",
+      "muted-foreground": "215 14% 46%",
+      "destructive": "354 70% 54%",
+      "destructive-foreground": "0 0% 100%",
+      "success": "134 61% 41%",
+      "success-foreground": "0 0% 100%",
+      "warning": "45 100% 51%",
+      "warning-foreground": "0 0% 20%",
+      "info": "211 100% 50%",
+      "info-foreground": "0 0% 100%",
+      "ring": "275 90% 29%",
+      "radius": "0.375rem"
+    },
+    "dark": {
+      "primary": "275 60% 65%",
+      "primary-foreground": "270 90% 10%",
+      "secondary": "270 30% 40%",
+      "secondary-foreground": "0 0% 100%",
+      "accent": "280 25% 50%",
+      "accent-foreground": "0 0% 100%",
+      "background": "270 10% 8%",
+      "foreground": "0 0% 95%",
+      "card": "270 10% 12%",
+      "card-foreground": "0 0% 95%",
+      "border": "270 10% 20%",
+      "muted": "270 10% 15%",
+      "muted-foreground": "270 5% 60%",
+      "destructive": "354 70% 54%",
+      "destructive-foreground": "0 0% 100%",
+      "success": "134 61% 41%",
+      "success-foreground": "0 0% 100%",
+      "warning": "45 100% 51%",
+      "warning-foreground": "0 0% 20%",
+      "info": "211 100% 60%",
+      "info-foreground": "0 0% 100%",
+      "ring": "275 60% 65%",
+      "radius": "0.375rem"
+    }
+  },
+  "tailwind": {
+    "config": {
+      "theme": {
+        "extend": {
+          "colors": {
+            "nyu-purple": "#57068c",
+            "nyu-purple-hover": "#702b9d",
+            "nyu-purple-light": "#ab82c5",
+            "nyu-purple-lighter": "#eee6f3",
+            "nyu-purple-dark": "#2d0051"
+          },
+          "fontFamily": {
+            "sans": [
+              "Inter",
+              "Helvetica",
+              "Arial",
+              "sans-serif"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

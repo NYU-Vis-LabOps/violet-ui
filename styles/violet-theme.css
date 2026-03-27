@@ -1,3 +1,32 @@
+/* Tailwind v4 theme mappings for violet-ui custom tokens.
+   Standard shadcn tokens (--color-primary, etc.) are already mapped
+   by the consumer's globals.css — this block adds violet-ui extras. */
+@theme inline {
+  /* Status tint colors (used by violet-status-badge) */
+  --color-status-neutral: hsl(var(--status-neutral));
+  --color-status-neutral-foreground: hsl(var(--status-neutral-foreground));
+  --color-info-tint: hsl(var(--info-tint));
+  --color-warning-tint: hsl(var(--warning-tint));
+  --color-warning-tint-foreground: hsl(var(--warning-tint-foreground));
+  --color-destructive-tint: hsl(var(--destructive-tint));
+  --color-success-tint: hsl(var(--success-tint));
+
+  /* Semantic colors not in standard shadcn */
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
+
+  /* Layered shadows (Linear-style depth) */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04), 0 1px 4px -1px rgb(0 0 0 / 0.07);
+  --shadow-md: 0 2px 4px -1px rgb(0 0 0 / 0.06), 0 4px 8px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 4px 6px -2px rgb(0 0 0 / 0.05), 0 10px 22px -4px rgb(0 0 0 / 0.12);
+  --shadow-xl: 0 8px 12px -4px rgb(0 0 0 / 0.05), 0 20px 40px -8px rgb(0 0 0 / 0.15);
+}
+
 @layer base {
   :root {
     --background: 220 14% 96%;
