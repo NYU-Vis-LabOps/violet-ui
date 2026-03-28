@@ -9,7 +9,7 @@ const violetCardVariants = cva("rounded-lg bg-card text-card-foreground", {
       default: "border border-border shadow-sm",
       bordered: "border border-border shadow-sm border-l-4 border-l-primary",
       elevated:
-        "shadow-md border border-border/50 hover:shadow-lg transition-[box-shadow,transform] duration-200 ease-out motion-safe:hover:-translate-y-0.5",
+        "shadow-md border border-border/50 hover:shadow-lg active:shadow-md transition-[box-shadow,transform] duration-200 ease-out motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0",
       stat: "border border-border shadow-sm p-3",
     },
   },

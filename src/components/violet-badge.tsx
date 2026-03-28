@@ -14,7 +14,7 @@ const violetBadgeVariants = cva(
         destructive: "bg-destructive text-destructive-foreground",
         warning: "bg-warning text-warning-foreground",
         info: "bg-info text-info-foreground",
-        outline: "border border-border bg-transparent text-foreground",
+        outline: "border border-muted-foreground bg-transparent text-foreground",
       },
     },
     defaultVariants: {

@@ -23,10 +23,10 @@ const violetButtonVariants = cva(
           "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        sm: "h-7 px-2.5 py-1 text-xs",
-        default: "h-9 px-3.5 py-1.5 text-sm",
+        sm: "h-9 md:h-7 px-2.5 py-1 text-xs",
+        default: "h-10 md:h-9 px-3.5 py-1.5 text-sm",
         lg: "h-11 px-5 py-2.5 text-base",
-        icon: "h-9 w-9 p-2",
+        icon: "h-10 w-10 md:h-9 md:w-9 p-2",
         pill: "px-3.5 py-1 rounded-full text-sm",
       },
     },

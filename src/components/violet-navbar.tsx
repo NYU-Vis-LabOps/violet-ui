@@ -121,7 +121,7 @@ const VioletNavbar = React.forwardRef<HTMLElement, VioletNavbarProps>(
               <a
                 key={link.href}
                 href={link.href}
-                className="text-primary-foreground/80 text-sm font-medium hover:text-primary-foreground py-2 transition-colors"
+                className="text-primary-foreground/80 text-sm font-medium hover:text-primary-foreground py-3 transition-colors"
                 {...(link.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
