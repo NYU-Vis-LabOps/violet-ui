@@ -2,7 +2,7 @@
 
 Based on: `NYU_Room_Access_Requirements_v0.2.docx` (2026-03-28 DRAFT)
 
-## Existing Components (19)
+## Existing Components (32)
 
 | # | Component | Primitive | Status |
 |---|-----------|-----------|--------|
@@ -34,6 +34,10 @@ Based on: `NYU_Room_Access_Requirements_v0.2.docx` (2026-03-28 DRAFT)
 | 26 | Popover | @radix-ui/react-popover | Done |
 | 27 | DatePicker | react-day-picker + Popover | Done |
 | 28 | DateRangePicker | react-day-picker + Popover | Done |
+| 29 | Avatar | @radix-ui/react-avatar | Done |
+| 30 | Breadcrumb | native (nav + ol) | Done |
+| 31 | EmptyState | custom (composite layout) | Done |
+| 32 | Tag | native (cva + removable) | Done |
 
 ---
 
@@ -47,14 +51,9 @@ All P0 components have been implemented.
 
 All P1 components have been implemented.
 
-### P2 — Low Priority (nice to have)
+### ~~P2 — Low Priority (nice to have)~~ DONE
 
-| Component | Requirement Source | Notes |
-|---|---|---|
-| **Avatar** | Approver identity display | Initials fallback |
-| **Breadcrumb** | Admin multi-level page navigation | Separator customization |
-| **EmptyState** | Empty table / list placeholder | Icon + message + action button |
-| **Tag / Chip** | Department multi-select result display (44 departments) | Removable variant, truncation |
+All P2 components have been implemented.
 
 ---
 
@@ -62,4 +61,4 @@ All P1 components have been implemented.
 
 - **P0**: ~~Without these, the core submission form and approval management pages cannot be built.~~ DONE
 - **P1**: ~~Needed for a usable admin experience — search, filter, pagination, contextual actions.~~ DONE
-- **P2**: Polish and UX refinements; can use simpler alternatives initially.
+- **P2**: ~~Polish and UX refinements; can use simpler alternatives initially.~~ DONE

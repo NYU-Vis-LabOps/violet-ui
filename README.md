@@ -23,20 +23,42 @@ npx shadcn@latest add \
   https://nyu-vis-labops.github.io/violet-ui/r/ui/violet-badge.json
 ```
 
-## Components
+## Components (32)
 
 | Component | Description |
 |-----------|-------------|
-| `violet-button` | Button with 6 variants (default, secondary, destructive, ghost, outline, link) and 5 sizes |
-| `violet-card` | Card with 4 variants (default, bordered, elevated, stat) and sub-components |
+| `violet-accordion` | Accordion with purple highlights |
+| `violet-alert` | Alert with info, warning, destructive, and success variants |
+| `violet-avatar` | Avatar with image and initials fallback, 3 sizes (sm, default, lg) |
 | `violet-badge` | Badge with 7 semantic variants |
-| `violet-status-badge` | Status badge for task/project states (not-started, in-progress, due-soon, overdue, completed) |
+| `violet-breadcrumb` | Breadcrumb navigation with customizable separators |
+| `violet-button` | Button with 6 variants and 5 sizes |
+| `violet-card` | Card with 4 variants (default, bordered, elevated, stat) |
+| `violet-checkbox` | Checkbox with label support |
+| `violet-date-picker` | Date picker with calendar popover |
+| `violet-date-range-picker` | Date range picker with independent month navigation |
+| `violet-dropdown-menu` | Dropdown menu with items, separators, and sub-menus |
+| `violet-empty-state` | Empty state placeholder with icon, title, description, and action |
+| `violet-file-upload` | File upload with drag & drop support |
+| `violet-form-field` | Form field layout wrapper with label, description, and error |
 | `violet-input` | Input with focus, error, and disabled states |
+| `violet-label` | Label with required indicator |
 | `violet-modal` | Modal dialog with 5 sizes (sm, default, lg, xl, full) |
 | `violet-navbar` | Top navigation bar with responsive hamburger menu |
-| `violet-table` | Data table with hover highlighting and optional striped rows |
+| `violet-pagination` | Pagination with page numbers and prev/next controls |
+| `violet-popover` | Popover with customizable trigger and content |
+| `violet-radio` | Radio group with label support |
+| `violet-search-input` | Search input with icon and clear button |
 | `violet-select` | Select dropdown with purple focus ring |
-| `violet-accordion` | Accordion with purple highlights |
+| `violet-skeleton` | Skeleton loading placeholder |
+| `violet-status-badge` | Status badge for task/project states |
+| `violet-stepper` | Multi-step wizard with context-based state management |
+| `violet-table` | Data table with hover highlighting and optional striped rows |
+| `violet-tabs` | Tabs with underline style |
+| `violet-tag` | Tag/chip with 3 variants and optional remove button |
+| `violet-textarea` | Textarea with auto-resize support |
+| `violet-toast` | Toast notifications via Sonner |
+| `violet-tooltip` | Tooltip with configurable placement |
 
 ## Usage
 
