@@ -49,5 +49,8 @@
     "tailwindcss": "^4.2.2",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0"
   }
 }

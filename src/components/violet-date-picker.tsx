@@ -1,53 +1,168 @@
 import * as React from "react"
-import { DayPicker, type DayPickerProps } from "react-day-picker"
+import {
+  DayPicker,
+  getDefaultClassNames,
+  type DayPickerProps,
+} from "react-day-picker"
+import { format } from "date-fns"
 
 import { cn } from "@/lib/utils"
-import { violetButtonVariants } from "./violet-button"
 import {
   VioletPopover,
   VioletPopoverTrigger,
   VioletPopoverContent,
 } from "./violet-popover"
 
-/* ── Calendar ─────────────────────────────────────────────────────── */
+/* ── Icons ───────────────────────────────────────────────────────── */
 
-function VioletCalendar({ className, classNames, ...props }: DayPickerProps) {
+function CalendarIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 15 15"
+      fill="none"
+      className={className}
+    >
+      <path
+        d="M4.5 1C4.77614 1 5 1.22386 5 1.5V2H10V1.5C10 1.22386 10.2239 1 10.5 1C10.7761 1 11 1.22386 11 1.5V2H12.5C13.3284 2 14 2.67157 14 3.5V12.5C14 13.3284 13.3284 14 12.5 14H2.5C1.67157 14 1 13.3284 1 12.5V3.5C1 2.67157 1.67157 2 2.5 2H4V1.5C4 1.22386 4.22386 1 4.5 1ZM10 3V3.5C10 3.77614 10.2239 4 10.5 4C10.7761 4 11 3.77614 11 3.5V3H12.5C12.7761 3 13 3.22386 13 3.5V5H2V3.5C2 3.22386 2.22386 3 2.5 3H4V3.5C4 3.77614 4.22386 4 4.5 4C4.77614 4 5 3.77614 5 3.5V3H10ZM2 6V12.5C2 12.7761 2.22386 13 2.5 13H12.5C12.7761 13 13 12.7761 13 12.5V6H2Z"
+        fill="currentColor"
+        fillRule="evenodd"
+        clipRule="evenodd"
+      />
+    </svg>
+  )
+}
+
+function ChevronLeft({ className }: { className?: string }) {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 15 15"
+      fill="none"
+      className={className}
+    >
+      <path
+        d="M8.84182 3.13514C9.04327 3.32401 9.05348 3.64042 8.86462 3.84188L5.43521 7.49991L8.86462 11.1579C9.05348 11.3594 9.04327 11.6758 8.84182 11.8647C8.64036 12.0535 8.32394 12.0433 8.13508 11.8419L4.38508 7.84188C4.20477 7.64955 4.20477 7.35027 4.38508 7.15794L8.13508 3.15794C8.32394 2.95648 8.64036 2.94628 8.84182 3.13514Z"
+        fill="currentColor"
+        fillRule="evenodd"
+        clipRule="evenodd"
+      />
+    </svg>
+  )
+}
+
+function ChevronRight({ className }: { className?: string }) {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 15 15"
+      fill="none"
+      className={className}
+    >
+      <path
+        d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+        fill="currentColor"
+        fillRule="evenodd"
+        clipRule="evenodd"
+      />
+    </svg>
+  )
+}
+
+/* ── Calendar ────────────────────────────────────────────────────── */
+
+const CELL = "h-8 w-8"
+
+const navButtonClasses =
+  "inline-flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground select-none transition-colors hover:bg-primary/10 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+
+function VioletCalendar({
+  className,
+  classNames,
+  showOutsideDays = true,
+  components,
+  ...props
+}: DayPickerProps) {
+  const defaults = getDefaultClassNames()
+
   return (
     <DayPicker
-      className={cn("p-0", className)}
+      showOutsideDays={showOutsideDays}
+      className={cn("p-3", className)}
       classNames={{
-        months: "flex flex-col sm:flex-row gap-4",
-        month: "flex flex-col gap-3",
-        month_caption: "flex justify-center items-center h-7",
-        caption_label: "text-sm font-medium",
-        nav: "flex items-center gap-1",
-        button_previous: cn(
-          violetButtonVariants({ variant: "ghost", size: "icon" }),
-          "absolute left-1 top-0 h-7 w-7"
+        root: cn("w-fit", defaults.root),
+        months: cn(
+          "relative flex flex-col gap-4 sm:flex-row",
+          defaults.months
         ),
-        button_next: cn(
-          violetButtonVariants({ variant: "ghost", size: "icon" }),
-          "absolute right-1 top-0 h-7 w-7"
+        month: cn("flex w-full flex-col gap-4", defaults.month),
+        month_caption: cn(
+          "flex h-8 items-center justify-center px-8",
+          defaults.month_caption
         ),
-        month_grid: "border-collapse",
-        weekdays: "flex",
-        weekday: "text-muted-foreground w-8 text-[0.8rem] font-normal",
-        week: "flex mt-1",
-        day: "relative p-0 text-center text-sm",
+        caption_label: cn(
+          "text-sm font-medium text-foreground select-none",
+          defaults.caption_label
+        ),
+        nav: cn(
+          "absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1",
+          defaults.nav
+        ),
+        button_previous: cn(navButtonClasses, defaults.button_previous),
+        button_next: cn(navButtonClasses, defaults.button_next),
+        month_grid: cn("w-full border-collapse", defaults.month_grid),
+        weekdays: cn("flex", defaults.weekdays),
+        weekday: cn(
+          `${CELL} flex-1 text-center text-[0.8rem] font-normal text-muted-foreground select-none`,
+          defaults.weekday
+        ),
+        week: cn("mt-1 flex w-full", defaults.week),
+        day: cn(
+          `group/day relative flex-1 p-0 text-center text-sm ${CELL}`,
+          defaults.day
+        ),
         day_button: cn(
-          violetButtonVariants({ variant: "ghost" }),
-          "h-8 w-8 p-0 font-normal aria-selected:opacity-100"
+          `relative inline-flex ${CELL} items-center justify-center rounded-md text-sm font-normal text-foreground transition-colors`,
+          "hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "disabled:pointer-events-none disabled:opacity-50 aria-selected:opacity-100",
+          defaults.day_button
         ),
-        selected:
-          "bg-primary text-primary-foreground rounded-md hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
-        today: "bg-muted rounded-md",
-        outside: "text-muted-foreground opacity-50",
-        disabled: "text-muted-foreground opacity-50",
-        range_middle: "aria-selected:bg-primary/10 aria-selected:text-foreground rounded-none",
-        range_start: "rounded-r-none",
-        range_end: "rounded-l-none",
-        hidden: "invisible",
+        selected: cn(
+          "[&>button]:bg-primary [&>button]:text-primary-foreground [&>button]:hover:bg-primary/90 rounded-md",
+          defaults.selected
+        ),
+        today: cn(
+          "[&>button]:bg-accent/15 [&>button]:font-semibold rounded-md",
+          defaults.today
+        ),
+        outside: cn(
+          "text-muted-foreground/40 aria-selected:text-muted-foreground/40",
+          defaults.outside
+        ),
+        disabled: cn(
+          "text-muted-foreground/40 pointer-events-none",
+          defaults.disabled
+        ),
+        range_start: cn("rounded-l-md bg-primary/10", defaults.range_start),
+        range_middle: cn(
+          "rounded-none bg-primary/10",
+          defaults.range_middle
+        ),
+        range_end: cn("rounded-r-md bg-primary/10", defaults.range_end),
+        hidden: cn("invisible", defaults.hidden),
         ...classNames,
+      }}
+      components={{
+        Chevron: ({ orientation }) =>
+          orientation === "left" ? (
+            <ChevronLeft className="h-4 w-4" />
+          ) : (
+            <ChevronRight className="h-4 w-4" />
+          ),
+        ...components,
       }}
       {...props}
     />
@@ -55,7 +170,7 @@ function VioletCalendar({ className, classNames, ...props }: DayPickerProps) {
 }
 VioletCalendar.displayName = "VioletCalendar"
 
-/* ── DatePicker ───────────────────────────────────────────────────── */
+/* ── DatePicker ──────────────────────────────────────────────────── */
 
 export interface VioletDatePickerProps {
   value?: Date
@@ -64,18 +179,14 @@ export interface VioletDatePickerProps {
   disabled?: boolean
   error?: boolean
   className?: string
-  formatDate?: (date: Date) => string
+  formatStr?: string
+  calendarProps?: Omit<DayPickerProps, "mode" | "selected" | "onSelect">
 }
 
-function defaultFormat(date: Date) {
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  })
-}
-
-const VioletDatePicker = React.forwardRef<HTMLButtonElement, VioletDatePickerProps>(
+const VioletDatePicker = React.forwardRef<
+  HTMLButtonElement,
+  VioletDatePickerProps
+>(
   (
     {
       value,
@@ -84,7 +195,8 @@ const VioletDatePicker = React.forwardRef<HTMLButtonElement, VioletDatePickerPro
       disabled,
       error,
       className,
-      formatDate = defaultFormat,
+      formatStr = "PPP",
+      calendarProps,
     },
     ref
   ) => {
@@ -97,35 +209,25 @@ const VioletDatePicker = React.forwardRef<HTMLButtonElement, VioletDatePickerPro
             ref={ref}
             type="button"
             disabled={disabled}
+            data-empty={!value || undefined}
             className={cn(
-              "flex h-9 w-full items-center justify-between rounded-md border border-input bg-background text-foreground px-3 py-1.5 text-base md:text-sm shadow-xs ring-offset-background transition-all duration-200 ease-out",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:shadow-sm",
-              "disabled:cursor-not-allowed disabled:opacity-50",
-              !value && "text-muted-foreground",
-              error && "border-destructive focus-visible:ring-destructive",
+              "flex h-9 w-full items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-base md:text-sm text-foreground shadow-xs ring-offset-background",
+              "transition-all duration-150 ease-out",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+              "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
+              "data-[empty]:text-muted-foreground",
+              error &&
+                "border-destructive focus-visible:ring-destructive",
               className
             )}
           >
-            <span className="truncate">
-              {value ? formatDate(value) : placeholder}
+            <CalendarIcon className="h-4 w-4 shrink-0 opacity-60" />
+            <span className="flex-1 truncate text-left">
+              {value ? format(value, formatStr) : placeholder}
             </span>
-            <svg
-              width="15"
-              height="15"
-              viewBox="0 0 15 15"
-              fill="none"
-              className="h-4 w-4 shrink-0 opacity-50"
-            >
-              <path
-                d="M4.5 1C4.77614 1 5 1.22386 5 1.5V2H10V1.5C10 1.22386 10.2239 1 10.5 1C10.7761 1 11 1.22386 11 1.5V2H12.5C13.3284 2 14 2.67157 14 3.5V12.5C14 13.3284 13.3284 14 12.5 14H2.5C1.67157 14 1 13.3284 1 12.5V3.5C1 2.67157 1.67157 2 2.5 2H4V1.5C4 1.22386 4.22386 1 4.5 1ZM10 3V3.5C10 3.77614 10.2239 4 10.5 4C10.7761 4 11 3.77614 11 3.5V3H12.5C12.7761 3 13 3.22386 13 3.5V5H2V3.5C2 3.22386 2.22386 3 2.5 3H4V3.5C4 3.77614 4.22386 4 4.5 4C4.77614 4 5 3.77614 5 3.5V3H10ZM2 6V12.5C2 12.7761 2.22386 13 2.5 13H12.5C12.7761 13 13 12.7761 13 12.5V6H2Z"
-                fill="currentColor"
-                fillRule="evenodd"
-                clipRule="evenodd"
-              />
-            </svg>
           </button>
         </VioletPopoverTrigger>
-        <VioletPopoverContent align="start" className="w-auto p-3">
+        <VioletPopoverContent align="start" className="w-auto p-0">
           <VioletCalendar
             mode="single"
             selected={value}
@@ -134,6 +236,7 @@ const VioletDatePicker = React.forwardRef<HTMLButtonElement, VioletDatePickerPro
               setOpen(false)
             }}
             defaultMonth={value}
+            {...calendarProps}
           />
         </VioletPopoverContent>
       </VioletPopover>
@@ -142,4 +245,85 @@ const VioletDatePicker = React.forwardRef<HTMLButtonElement, VioletDatePickerPro
 )
 VioletDatePicker.displayName = "VioletDatePicker"
 
-export { VioletCalendar, VioletDatePicker }
+/* ── DateRangePicker ─────────────────────────────────────────────── */
+
+export interface VioletDateRangePickerProps {
+  value?: { from: Date; to?: Date }
+  onChange?: (range: { from: Date; to?: Date } | undefined) => void
+  placeholder?: string
+  disabled?: boolean
+  error?: boolean
+  className?: string
+  formatStr?: string
+  calendarProps?: Omit<DayPickerProps, "mode" | "selected" | "onSelect">
+}
+
+const VioletDateRangePicker = React.forwardRef<
+  HTMLButtonElement,
+  VioletDateRangePickerProps
+>(
+  (
+    {
+      value,
+      onChange,
+      placeholder = "Pick a date range",
+      disabled,
+      error,
+      className,
+      formatStr = "LLL dd, y",
+      calendarProps,
+    },
+    ref
+  ) => {
+    const [open, setOpen] = React.useState(false)
+
+    const displayText = React.useMemo(() => {
+      if (!value?.from) return null
+      if (!value.to) return format(value.from, formatStr)
+      return `${format(value.from, formatStr)} – ${format(value.to, formatStr)}`
+    }, [value, formatStr])
+
+    return (
+      <VioletPopover open={open} onOpenChange={setOpen}>
+        <VioletPopoverTrigger asChild>
+          <button
+            ref={ref}
+            type="button"
+            disabled={disabled}
+            data-empty={!value?.from || undefined}
+            className={cn(
+              "flex h-9 w-full items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-base md:text-sm text-foreground shadow-xs ring-offset-background",
+              "transition-all duration-150 ease-out",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+              "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
+              "data-[empty]:text-muted-foreground",
+              error &&
+                "border-destructive focus-visible:ring-destructive",
+              className
+            )}
+          >
+            <CalendarIcon className="h-4 w-4 shrink-0 opacity-60" />
+            <span className="flex-1 truncate text-left">
+              {displayText ?? placeholder}
+            </span>
+          </button>
+        </VioletPopoverTrigger>
+        <VioletPopoverContent align="start" className="w-auto p-0">
+          <VioletCalendar
+            mode="range"
+            selected={value}
+            onSelect={(range) => {
+              onChange?.(range as { from: Date; to?: Date } | undefined)
+            }}
+            numberOfMonths={2}
+            defaultMonth={value?.from}
+            {...calendarProps}
+          />
+        </VioletPopoverContent>
+      </VioletPopover>
+    )
+  }
+)
+VioletDateRangePicker.displayName = "VioletDateRangePicker"
+
+export { VioletCalendar, VioletDatePicker, VioletDateRangePicker }

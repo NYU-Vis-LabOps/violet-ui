@@ -33,6 +33,7 @@ Based on: `NYU_Room_Access_Requirements_v0.2.docx` (2026-03-28 DRAFT)
 | 25 | SearchInput | native (search input) | Done |
 | 26 | Popover | @radix-ui/react-popover | Done |
 | 27 | DatePicker | react-day-picker + Popover | Done |
+| 28 | DateRangePicker | react-day-picker + Popover | Done |
 
 ---
 
