@@ -25,6 +25,14 @@ Based on: `NYU_Room_Access_Requirements_v0.2.docx` (2026-03-28 DRAFT)
 | 17 | Tabs | @radix-ui/react-tabs | Done |
 | 18 | Toast | sonner | Done |
 | 19 | Stepper | custom (React Context) | Done |
+| 20 | Alert | native (cva variants) | Done |
+| 21 | Skeleton | native | Done |
+| 22 | Tooltip | @radix-ui/react-tooltip | Done |
+| 23 | DropdownMenu | @radix-ui/react-dropdown-menu | Done |
+| 24 | Pagination | custom (violetButtonVariants) | Done |
+| 25 | SearchInput | native (search input) | Done |
+| 26 | Popover | @radix-ui/react-popover | Done |
+| 27 | DatePicker | react-day-picker + Popover | Done |
 
 ---
 
@@ -34,17 +42,9 @@ Based on: `NYU_Room_Access_Requirements_v0.2.docx` (2026-03-28 DRAFT)
 
 All P0 components have been implemented.
 
-### P1 — Medium Priority (admin panel & UX)
+### ~~P1 — Medium Priority (admin panel & UX)~~ DONE
 
-| Component | Requirement Source | Notes |
-|---|---|---|
-| **DatePicker / DateRangePicker** | Audit log date filter, Access Start/End Date fields | Calendar popup, range mode |
-| **Pagination** | Application list table, audit log table | Page size selector, total count display |
-| **SearchInput** | NYU ID status lookup page, audit log search by Request ID | Debounced input, clear button |
-| **DropdownMenu** | Row-level actions (Approve / Deny / View Detail) | Keyboard accessible, icon support |
-| **Alert / Banner** | System notices, SLA timeout warnings, pending-confirmation hints | Dismissible, severity variants (info/warning/error) |
-| **Tooltip** | Form field help text, table column header explanations | Delay, placement options |
-| **Skeleton / Loading** | Table loading state, status query page | Match component dimensions |
+All P1 components have been implemented.
 
 ### P2 — Low Priority (nice to have)
 
@@ -60,5 +60,5 @@ All P0 components have been implemented.
 ## Priority Rationale
 
 - **P0**: ~~Without these, the core submission form and approval management pages cannot be built.~~ DONE
-- **P1**: Needed for a usable admin experience — search, filter, pagination, contextual actions.
+- **P1**: ~~Needed for a usable admin experience — search, filter, pagination, contextual actions.~~ DONE
 - **P2**: Polish and UX refinements; can use simpler alternatives initially.
