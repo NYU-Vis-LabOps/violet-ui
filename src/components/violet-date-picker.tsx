@@ -4,7 +4,7 @@ import {
   getDefaultClassNames,
   type DayPickerProps,
 } from "react-day-picker"
-import { format } from "date-fns"
+import { format, addMonths, isBefore, startOfMonth } from "date-fns"
 
 import { cn } from "@/lib/utils"
 import {
@@ -276,12 +276,38 @@ const VioletDateRangePicker = React.forwardRef<
     ref
   ) => {
     const [open, setOpen] = React.useState(false)
+    const now = new Date()
+    const [leftMonth, setLeftMonth] = React.useState<Date>(
+      value?.from ?? now
+    )
+    const [rightMonth, setRightMonth] = React.useState<Date>(
+      value?.to ?? addMonths(value?.from ?? now, 1)
+    )
+
+    // Keep right month at least 1 month after left
+    const handleLeftMonthChange = (month: Date) => {
+      setLeftMonth(month)
+      if (!isBefore(startOfMonth(month), startOfMonth(rightMonth))) {
+        setRightMonth(addMonths(month, 1))
+      }
+    }
+
+    const handleRightMonthChange = (month: Date) => {
+      setRightMonth(month)
+      if (!isBefore(startOfMonth(leftMonth), startOfMonth(month))) {
+        setLeftMonth(addMonths(month, -1))
+      }
+    }
 
     const displayText = React.useMemo(() => {
       if (!value?.from) return null
       if (!value.to) return format(value.from, formatStr)
       return `${format(value.from, formatStr)} – ${format(value.to, formatStr)}`
     }, [value, formatStr])
+
+    const handleSelect = (range: { from: Date; to?: Date } | undefined) => {
+      onChange?.(range)
+    }
 
     return (
       <VioletPopover open={open} onOpenChange={setOpen}>
@@ -309,16 +335,30 @@ const VioletDateRangePicker = React.forwardRef<
           </button>
         </VioletPopoverTrigger>
         <VioletPopoverContent align="start" className="w-auto p-0">
-          <VioletCalendar
-            mode="range"
-            selected={value}
-            onSelect={(range) => {
-              onChange?.(range as { from: Date; to?: Date } | undefined)
-            }}
-            numberOfMonths={2}
-            defaultMonth={value?.from}
-            {...calendarProps}
-          />
+          <div className="flex flex-col gap-0 sm:flex-row">
+            <VioletCalendar
+              mode="range"
+              selected={value}
+              onSelect={(range) =>
+                handleSelect(range as { from: Date; to?: Date } | undefined)
+              }
+              month={leftMonth}
+              onMonthChange={handleLeftMonthChange}
+              {...calendarProps}
+            />
+            <div className="hidden sm:block w-px bg-border" />
+            <hr className="sm:hidden border-border" />
+            <VioletCalendar
+              mode="range"
+              selected={value}
+              onSelect={(range) =>
+                handleSelect(range as { from: Date; to?: Date } | undefined)
+              }
+              month={rightMonth}
+              onMonthChange={handleRightMonthChange}
+              {...calendarProps}
+            />
+          </div>
         </VioletPopoverContent>
       </VioletPopover>
     )
