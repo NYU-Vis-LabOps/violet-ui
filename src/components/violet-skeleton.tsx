@@ -8,7 +8,7 @@ const VioletSkeleton = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("animate-pulse rounded-md bg-muted", className)}
+    className={cn("animate-pulse rounded-md bg-foreground/10", className)}
     {...props}
   />
 ))

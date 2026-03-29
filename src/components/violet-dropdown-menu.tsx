@@ -76,7 +76,7 @@ const VioletDropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-primary/10 data-[state=open]:bg-primary/10 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
+      "flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-2.5 md:py-1.5 text-sm outline-none focus:bg-primary/10 data-[state=open]:bg-primary/10 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
       className
     )}
     {...props}

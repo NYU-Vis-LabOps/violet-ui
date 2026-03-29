@@ -9,10 +9,10 @@ const violetAlertVariants = cva(
     variants: {
       variant: {
         default: "bg-background text-foreground border-border",
-        info: "bg-info-tint text-info-foreground border-info/20",
+        info: "bg-info-tint text-info-tint-foreground border-info/20",
         warning: "bg-warning-tint text-warning-tint-foreground border-warning/20",
-        destructive: "bg-destructive-tint text-destructive border-destructive/20",
-        success: "bg-success-tint text-success-foreground border-success/20",
+        destructive: "bg-destructive-tint text-destructive-tint-foreground border-destructive/20",
+        success: "bg-success-tint text-success-tint-foreground border-success/20",
       },
     },
     defaultVariants: {
@@ -41,7 +41,7 @@ const VioletAlert = React.forwardRef<HTMLDivElement, VioletAlertProps>(
         <button
           type="button"
           onClick={onDismiss}
-          className="absolute right-3 top-3 rounded-sm p-0.5 text-current opacity-70 hover:opacity-100 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ring-offset-background"
+          className="absolute right-3 top-3 rounded-sm p-0.5 text-current opacity-70 hover:opacity-100 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background"
           aria-label="Dismiss"
         >
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" className="h-3.5 w-3.5">

@@ -33,7 +33,7 @@ const VioletSearchInput = React.forwardRef<HTMLInputElement, VioletSearchInputPr
           type="search"
           value={value}
           className={cn(
-            "flex h-9 w-full rounded-md border border-input bg-background text-foreground pl-9 pr-8 py-1.5 text-base md:text-sm shadow-xs ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:shadow-sm disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 ease-out [&::-webkit-search-cancel-button]:hidden",
+            "flex h-9 w-full rounded-md border border-input bg-background text-foreground pl-9 pr-8 py-1.5 text-base md:text-sm shadow-xs ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:shadow-sm disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted transition-all duration-200 ease-out [&::-webkit-search-cancel-button]:hidden",
             className
           )}
           {...props}

@@ -9,7 +9,10 @@
   --color-warning-tint: hsl(var(--warning-tint));
   --color-warning-tint-foreground: hsl(var(--warning-tint-foreground));
   --color-destructive-tint: hsl(var(--destructive-tint));
+  --color-destructive-tint-foreground: hsl(var(--destructive-tint-foreground));
   --color-success-tint: hsl(var(--success-tint));
+  --color-success-tint-foreground: hsl(var(--success-tint-foreground));
+  --color-info-tint-foreground: hsl(var(--info-tint-foreground));
 
   /* Semantic colors not in standard shadcn */
   --color-success: hsl(var(--success));
@@ -67,10 +70,13 @@
     --status-neutral: 210 14% 93%;
     --status-neutral-foreground: 215 14% 46%;
     --info-tint: 207 88% 94%;
+    --info-tint-foreground: 211 80% 38%;
     --warning-tint: 45 100% 90%;
     --warning-tint-foreground: 28 98% 54%;
     --destructive-tint: 354 71% 91%;
+    --destructive-tint-foreground: 354 65% 42%;
     --success-tint: 134 41% 88%;
+    --success-tint-foreground: 134 55% 30%;
   }
 
   .dark {
@@ -112,9 +118,12 @@
     --status-neutral: 270 10% 18%;
     --status-neutral-foreground: 270 5% 60%;
     --info-tint: 211 60% 18%;
+    --info-tint-foreground: 211 90% 72%;
     --warning-tint: 45 60% 18%;
     --warning-tint-foreground: 28 90% 60%;
     --destructive-tint: 354 50% 18%;
+    --destructive-tint-foreground: 354 75% 68%;
     --success-tint: 134 40% 18%;
+    --success-tint-foreground: 134 50% 62%;
   }
 }

@@ -44,7 +44,10 @@ body {
   --color-warning-tint: hsl(var(--warning-tint));
   --color-warning-tint-foreground: hsl(var(--warning-tint-foreground));
   --color-destructive-tint: hsl(var(--destructive-tint));
+  --color-destructive-tint-foreground: hsl(var(--destructive-tint-foreground));
   --color-success-tint: hsl(var(--success-tint));
+  --color-success-tint-foreground: hsl(var(--success-tint-foreground));
+  --color-info-tint-foreground: hsl(var(--info-tint-foreground));
 
   /* Layered shadows — resolved via CSS variable indirection for dark mode */
   --shadow-xs: var(--shadow-xs-val);
