@@ -23,7 +23,7 @@ npx shadcn@latest add \
   https://nyu-vis-labops.github.io/violet-ui/r/ui/violet-badge.json
 ```
 
-## Components (32)
+## Components (40)
 
 | Component | Description |
 |-----------|-------------|
@@ -35,28 +35,36 @@ npx shadcn@latest add \
 | `violet-button` | Button with 6 variants and 5 sizes |
 | `violet-card` | Card with 4 variants (default, bordered, elevated, stat) |
 | `violet-checkbox` | Checkbox with label support |
+| `violet-combobox` | Autocomplete combobox with search, grouping, and custom value support |
+| `violet-confirm-dialog` | Confirmation dialog with default and destructive variants |
+| `violet-data-table` | Data table with row selection, sorting, and pagination |
 | `violet-date-picker` | Date picker with calendar popover |
 | `violet-date-range-picker` | Date range picker with independent month navigation |
 | `violet-dropdown-menu` | Dropdown menu with items, separators, and sub-menus |
 | `violet-empty-state` | Empty state placeholder with icon, title, description, and action |
 | `violet-file-upload` | File upload with drag & drop support |
 | `violet-form-field` | Form field layout wrapper with label, description, and error |
+| `violet-form-repeater` | Repeatable form rows with add, duplicate, and delete actions |
 | `violet-input` | Input with focus, error, and disabled states |
 | `violet-label` | Label with required indicator |
 | `violet-modal` | Modal dialog with 5 sizes (sm, default, lg, xl, full) |
 | `violet-navbar` | Top navigation bar with responsive hamburger menu |
 | `violet-pagination` | Pagination with page numbers and prev/next controls |
 | `violet-popover` | Popover with customizable trigger and content |
+| `violet-progress` | Progress bar with 3 sizes and 4 color variants |
 | `violet-radio` | Radio group with label support |
 | `violet-search-input` | Search input with icon and clear button |
 | `violet-select` | Select dropdown with purple focus ring |
+| `violet-sidebar` | Sidebar navigation with sections, icons, and collapsible state |
 | `violet-skeleton` | Skeleton loading placeholder |
 | `violet-status-badge` | Status badge for task/project states |
 | `violet-stepper` | Multi-step wizard with context-based state management |
+| `violet-switch` | Toggle switch with 2 sizes (sm, default) |
 | `violet-table` | Data table with hover highlighting and optional striped rows |
 | `violet-tabs` | Tabs with underline style |
 | `violet-tag` | Tag/chip with 3 variants and optional remove button |
 | `violet-textarea` | Textarea with auto-resize support |
+| `violet-timeline` | Vertical timeline with 6 dot variants and icon support |
 | `violet-toast` | Toast notifications via Sonner |
 | `violet-tooltip` | Tooltip with configurable placement |
 

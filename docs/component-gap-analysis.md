@@ -1,8 +1,8 @@
 # Violet UI — Component Gap Analysis
 
-Based on: `NYU_Room_Access_Requirements_v0.2.docx` (2026-03-28 DRAFT)
+Based on: `NYU_Room_Access_Requirements_v0.6.docx` (2026-03-30 DRAFT)
 
-## Existing Components (32)
+## Existing Components (40)
 
 | # | Component | Primitive | Status |
 |---|-----------|-----------|--------|
@@ -38,27 +38,37 @@ Based on: `NYU_Room_Access_Requirements_v0.2.docx` (2026-03-28 DRAFT)
 | 30 | Breadcrumb | native (nav + ol) | Done |
 | 31 | EmptyState | custom (composite layout) | Done |
 | 32 | Tag | native (cva + removable) | Done |
+| 33 | Switch | @radix-ui/react-switch | Done |
+| 34 | Progress | @radix-ui/react-progress | Done |
+| 35 | ConfirmDialog | @radix-ui/react-alert-dialog | Done |
+| 36 | Timeline | custom (compound component) | Done |
+| 37 | Combobox | cmdk + Popover | Done |
+| 38 | Sidebar | custom (aside + nav) | Done |
+| 39 | FormRepeater | custom (React Context, generic) | Done |
+| 40 | DataTable | @tanstack/react-table + Table | Done |
 
 ---
 
-## Components To Add
+## Components Added in v0.6
 
-### ~~P0 — High Priority (core form & approval flow)~~ DONE
+### P3 — v0.6 Requirements (autocomplete, bulk actions, audit timeline)
 
-All P0 components have been implemented.
-
-### ~~P1 — Medium Priority (admin panel & UX)~~ DONE
-
-All P1 components have been implemented.
-
-### ~~P2 — Low Priority (nice to have)~~ DONE
-
-All P2 components have been implemented.
+| Component | Primitive | Purpose |
+|-----------|-----------|---------|
+| Switch | @radix-ui/react-switch | Toggle controls for settings/preferences |
+| Progress | @radix-ui/react-progress | Upload progress, approval workflow step bars |
+| ConfirmDialog | @radix-ui/react-alert-dialog | Destructive action confirmation (delete, revoke) |
+| Timeline | custom compound | Audit log display with status-colored dots |
+| Combobox | cmdk + Popover | Autocomplete dropdowns (building, PI email) |
+| Sidebar | custom aside | Admin panel navigation |
+| FormRepeater | custom generic | Repeatable form rows (room access, collaborators) |
+| DataTable | @tanstack/react-table | Sortable, selectable, paginated data tables |
 
 ---
 
-## Priority Rationale
+## Historical Priorities
 
 - **P0**: ~~Without these, the core submission form and approval management pages cannot be built.~~ DONE
 - **P1**: ~~Needed for a usable admin experience — search, filter, pagination, contextual actions.~~ DONE
 - **P2**: ~~Polish and UX refinements; can use simpler alternatives initially.~~ DONE
+- **P3**: ~~v0.6 feature requirements — autocomplete combobox, bulk selection, audit timeline.~~ DONE
