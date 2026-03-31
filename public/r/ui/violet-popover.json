@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-popover",
+  "type": "registry:ui",
+  "title": "violet-popover",
+  "description": "violet-popover component",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/lib/violet-utils.json"
+  ],
+  "files": [
+    {
+      "path": "ui/violet-popover.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\nimport { Popover as PopoverPrimitive } from \"@base-ui/react/popover\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction VioletPopover({ ...props }: PopoverPrimitive.Root.Props) {\n  return <PopoverPrimitive.Root data-slot=\"popover\" {...props} />\n}\n\nfunction VioletPopoverTrigger({\n  ...props\n}: PopoverPrimitive.Trigger.Props) {\n  return <PopoverPrimitive.Trigger data-slot=\"popover-trigger\" {...props} />\n}\n\nfunction VioletPopoverContent({\n  className,\n  align = \"center\",\n  alignOffset = 0,\n  side = \"bottom\",\n  sideOffset = 4,\n  ...props\n}: PopoverPrimitive.Popup.Props &\n  Pick<\n    PopoverPrimitive.Positioner.Props,\n    \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\"\n  >) {\n  return (\n    <PopoverPrimitive.Portal>\n      <PopoverPrimitive.Positioner\n        align={align}\n        alignOffset={alignOffset}\n        side={side}\n        sideOffset={sideOffset}\n        className=\"isolate z-50\"\n      >\n        <PopoverPrimitive.Popup\n          data-slot=\"popover-content\"\n          className={cn(\n            \"z-50 w-auto rounded-md border border-border bg-card text-card-foreground p-4 shadow-lg outline-none\",\n            \"duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2\",\n            \"data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95\",\n            className\n          )}\n          {...props}\n        />\n      </PopoverPrimitive.Positioner>\n    </PopoverPrimitive.Portal>\n  )\n}\n\nfunction VioletPopoverAnchor({\n  ...props\n}: PopoverPrimitive.Anchor.Props) {\n  return <PopoverPrimitive.Anchor data-slot=\"popover-anchor\" {...props} />\n}\n\nexport {\n  VioletPopover,\n  VioletPopoverTrigger,\n  VioletPopoverContent,\n  VioletPopoverAnchor,\n}\n"
+    }
+  ]
+}

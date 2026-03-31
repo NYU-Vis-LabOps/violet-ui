@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-button",
+  "type": "registry:ui",
+  "title": "Violet Button",
+  "description": "NYU branded button with 6 variants and 5 sizes",
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/lib/violet-utils.json"
+  ],
+  "files": [
+    {
+      "path": "ui/violet-button.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\nimport { Slot } from \"@radix-ui/react-slot\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst violetButtonVariants = cva(\n  \"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 motion-safe:active:translate-y-px\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md active:shadow-sm\",\n        secondary:\n          \"bg-muted text-foreground hover:bg-muted/80\",\n        destructive:\n          \"bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md active:shadow-sm\",\n        ghost:\n          \"text-primary hover:bg-primary/10 hover:text-primary\",\n        outline:\n          \"border border-primary bg-transparent text-primary hover:bg-primary/10 active:bg-primary active:text-primary-foreground\",\n        link:\n          \"text-primary underline-offset-4 hover:underline\",\n      },\n      size: {\n        sm: \"h-9 md:h-7 px-2.5 py-1 text-xs\",\n        default: \"h-10 md:h-9 px-3.5 py-1.5 text-sm\",\n        lg: \"h-11 px-5 py-2.5 text-base\",\n        icon: \"h-10 w-10 md:h-9 md:w-9 p-2\",\n        pill: \"px-3.5 py-1 rounded-full text-sm\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n)\n\nexport interface VioletButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement>,\n    VariantProps<typeof violetButtonVariants> {\n  asChild?: boolean\n}\n\nconst VioletButton = React.forwardRef<HTMLButtonElement, VioletButtonProps>(\n  ({ className, variant, size, asChild = false, ...props }, ref) => {\n    const Comp = asChild ? Slot : \"button\"\n    return (\n      <Comp\n        className={cn(violetButtonVariants({ variant, size, className }))}\n        ref={ref}\n        {...props}\n      />\n    )\n  }\n)\nVioletButton.displayName = \"VioletButton\"\n\nexport { VioletButton, violetButtonVariants }\n"
+    }
+  ]
+}

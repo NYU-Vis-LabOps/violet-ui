@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-empty-state",
+  "type": "registry:ui",
+  "title": "violet-empty-state",
+  "description": "violet-empty-state component",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/lib/violet-utils.json"
+  ],
+  "files": [
+    {
+      "path": "ui/violet-empty-state.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst VioletEmptyState = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\n      \"flex flex-col items-center justify-center py-12 px-4 text-center\",\n      className\n    )}\n    {...props}\n  />\n))\nVioletEmptyState.displayName = \"VioletEmptyState\"\n\nconst EmptyStateIcon = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\n      \"mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-muted text-muted-foreground [&>svg]:h-6 [&>svg]:w-6\",\n      className\n    )}\n    {...props}\n  />\n))\nEmptyStateIcon.displayName = \"EmptyStateIcon\"\n\nconst EmptyStateTitle = React.forwardRef<\n  HTMLHeadingElement,\n  React.HTMLAttributes<HTMLHeadingElement>\n>(({ className, ...props }, ref) => (\n  <h3\n    ref={ref}\n    className={cn(\"text-base font-semibold text-foreground\", className)}\n    {...props}\n  />\n))\nEmptyStateTitle.displayName = \"EmptyStateTitle\"\n\nconst EmptyStateDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <p\n    ref={ref}\n    className={cn(\n      \"mt-1 max-w-sm text-sm leading-relaxed text-muted-foreground\",\n      className\n    )}\n    {...props}\n  />\n))\nEmptyStateDescription.displayName = \"EmptyStateDescription\"\n\nconst EmptyStateAction = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"mt-4\", className)} {...props} />\n))\nEmptyStateAction.displayName = \"EmptyStateAction\"\n\nexport {\n  VioletEmptyState,\n  EmptyStateIcon,\n  EmptyStateTitle,\n  EmptyStateDescription,\n  EmptyStateAction,\n}\n"
+    }
+  ]
+}

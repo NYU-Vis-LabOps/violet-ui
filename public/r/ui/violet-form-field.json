@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-form-field",
+  "type": "registry:ui",
+  "title": "violet-form-field",
+  "description": "violet-form-field component",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/lib/violet-utils.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/ui/violet-label.json"
+  ],
+  "files": [
+    {
+      "path": "ui/violet-form-field.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { VioletLabel } from \"./violet-label\"\n\nexport interface VioletFormFieldProps extends React.HTMLAttributes<HTMLDivElement> {\n  label: string\n  htmlFor?: string\n  required?: boolean\n  description?: string\n  error?: boolean\n  errorMessage?: string\n}\n\nconst VioletFormField = React.forwardRef<HTMLDivElement, VioletFormFieldProps>(\n  ({ label, htmlFor, required, description, error, errorMessage, children, className, ...props }, ref) => {\n    const errorId = error && errorMessage && htmlFor ? `${htmlFor}-error` : undefined\n    const descId = description && htmlFor ? `${htmlFor}-desc` : undefined\n    return (\n      <div ref={ref} className={cn(\"space-y-1.5\", className)} {...props}>\n        <VioletLabel htmlFor={htmlFor}>\n          {label}\n          {required && <span className=\"ml-0.5 text-destructive\" aria-hidden>*</span>}\n        </VioletLabel>\n        {description && (\n          <p id={descId} className=\"text-xs text-muted-foreground\">{description}</p>\n        )}\n        {children}\n        {error && errorMessage && (\n          <p id={errorId} className=\"text-xs font-medium text-destructive\" role=\"alert\">{errorMessage}</p>\n        )}\n      </div>\n    )\n  }\n)\nVioletFormField.displayName = \"VioletFormField\"\n\nexport { VioletFormField }\n"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-tooltip",
+  "type": "registry:ui",
+  "title": "violet-tooltip",
+  "description": "violet-tooltip component",
+  "dependencies": [
+    "@radix-ui/react-tooltip"
+  ],
+  "registryDependencies": [
+    "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/lib/violet-utils.json"
+  ],
+  "files": [
+    {
+      "path": "ui/violet-tooltip.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\nimport * as TooltipPrimitive from \"@radix-ui/react-tooltip\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst VioletTooltipProvider = TooltipPrimitive.Provider\nconst VioletTooltip = TooltipPrimitive.Root\nconst VioletTooltipTrigger = TooltipPrimitive.Trigger\n\nconst VioletTooltipContent = React.forwardRef<\n  React.ComponentRef<typeof TooltipPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>\n>(({ className, sideOffset = 4, ...props }, ref) => (\n  <TooltipPrimitive.Portal>\n    <TooltipPrimitive.Content\n      ref={ref}\n      sideOffset={sideOffset}\n      className={cn(\n        \"z-50 overflow-hidden rounded-md bg-popover text-popover-foreground border border-border px-3 py-1.5 text-xs shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2\",\n        className\n      )}\n      {...props}\n    />\n  </TooltipPrimitive.Portal>\n))\nVioletTooltipContent.displayName = \"VioletTooltipContent\"\n\nexport { VioletTooltipProvider, VioletTooltip, VioletTooltipTrigger, VioletTooltipContent }\n"
+    }
+  ]
+}

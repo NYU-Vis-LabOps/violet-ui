@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-esc-close",
+  "type": "registry:hook",
+  "title": "use-esc-close",
+  "description": "use-esc-close hook",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "hooks/use-esc-close.ts",
+      "type": "registry:hook",
+      "content": "import { useEffect } from \"react\"\n\nexport function useEscClose(onClose: () => void, enabled = true) {\n  useEffect(() => {\n    if (!enabled) return\n\n    const handler = (e: KeyboardEvent) => {\n      if (e.key === \"Escape\") {\n        onClose()\n      }\n    }\n\n    document.addEventListener(\"keydown\", handler)\n    return () => document.removeEventListener(\"keydown\", handler)\n  }, [onClose, enabled])\n}\n"
+    }
+  ]
+}

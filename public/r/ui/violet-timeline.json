@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-timeline",
+  "type": "registry:ui",
+  "title": "violet-timeline",
+  "description": "violet-timeline component",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/lib/violet-utils.json"
+  ],
+  "files": [
+    {
+      "path": "ui/violet-timeline.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\n/* ── Root ─────────────────────────────────────────────────────────── */\n\nconst VioletTimeline = React.forwardRef<\n  HTMLOListElement,\n  React.HTMLAttributes<HTMLOListElement>\n>(({ className, ...props }, ref) => (\n  <ol\n    ref={ref}\n    className={cn(\"relative flex flex-col\", className)}\n    {...props}\n  />\n))\nVioletTimeline.displayName = \"VioletTimeline\"\n\n/* ── Item ─────────────────────────────────────────────────────────── */\n\nconst VioletTimelineItem = React.forwardRef<\n  HTMLLIElement,\n  React.HTMLAttributes<HTMLLIElement>\n>(({ className, ...props }, ref) => (\n  <li\n    ref={ref}\n    className={cn(\"relative flex gap-3 pb-6 last:pb-0\", className)}\n    {...props}\n  />\n))\nVioletTimelineItem.displayName = \"VioletTimelineItem\"\n\n/* ── Dot ──────────────────────────────────────────────────────────── */\n\nconst dotVariants = cva(\n  \"relative z-10 flex h-3 w-3 shrink-0 items-center justify-center rounded-full mt-1\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary\",\n        success: \"bg-success\",\n        info: \"bg-info\",\n        warning: \"bg-warning\",\n        destructive: \"bg-destructive\",\n        neutral: \"bg-muted-foreground/40\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\nexport interface TimelineDotProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof dotVariants> {\n  icon?: React.ReactNode\n}\n\nconst iconDotForeground: Record<string, string> = {\n  default: \"text-primary-foreground\",\n  success: \"text-success-foreground\",\n  info: \"text-info-foreground\",\n  warning: \"text-warning-foreground\",\n  destructive: \"text-destructive-foreground\",\n  neutral: \"text-background\",\n}\n\nconst TimelineDot = React.forwardRef<HTMLDivElement, TimelineDotProps>(\n  ({ className, variant, icon, ...props }, ref) =>\n    icon ? (\n      <div\n        ref={ref}\n        className={cn(\n          \"relative z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-full\",\n          dotVariants({ variant, className: \"\" }),\n          iconDotForeground[variant ?? \"default\"],\n          className\n        )}\n        {...props}\n      >\n        {icon}\n      </div>\n    ) : (\n      <div\n        ref={ref}\n        className={cn(dotVariants({ variant, className }))}\n        {...props}\n      />\n    )\n)\nTimelineDot.displayName = \"TimelineDot\"\n\n/* ── Connector ────────────────────────────────────────────────────── */\n\nconst TimelineConnector = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\n      \"absolute left-[5.5px] top-4 bottom-0 w-px bg-border\",\n      className\n    )}\n    {...props}\n  />\n))\nTimelineConnector.displayName = \"TimelineConnector\"\n\n/* ── Content ──────────────────────────────────────────────────────── */\n\nconst TimelineContent = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"flex-1 min-w-0 -mt-0.5\", className)}\n    {...props}\n  />\n))\nTimelineContent.displayName = \"TimelineContent\"\n\nexport {\n  VioletTimeline,\n  VioletTimelineItem,\n  TimelineDot,\n  TimelineConnector,\n  TimelineContent,\n  dotVariants,\n}\n"
+    }
+  ]
+}

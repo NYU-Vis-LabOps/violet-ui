@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-avatar",
+  "type": "registry:ui",
+  "title": "violet-avatar",
+  "description": "violet-avatar component",
+  "dependencies": [
+    "@radix-ui/react-avatar",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/lib/violet-utils.json"
+  ],
+  "files": [
+    {
+      "path": "ui/violet-avatar.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\nimport * as AvatarPrimitive from \"@radix-ui/react-avatar\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst violetAvatarVariants = cva(\n  \"relative flex shrink-0 overflow-hidden rounded-full\",\n  {\n    variants: {\n      size: {\n        sm: \"h-7 w-7 text-xs\",\n        default: \"h-9 w-9 text-sm\",\n        lg: \"h-11 w-11 text-base\",\n      },\n    },\n    defaultVariants: {\n      size: \"default\",\n    },\n  }\n)\n\nexport interface VioletAvatarProps\n  extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>,\n    VariantProps<typeof violetAvatarVariants> {}\n\nconst VioletAvatar = React.forwardRef<\n  React.ComponentRef<typeof AvatarPrimitive.Root>,\n  VioletAvatarProps\n>(({ className, size, ...props }, ref) => (\n  <AvatarPrimitive.Root\n    ref={ref}\n    className={cn(violetAvatarVariants({ size, className }))}\n    {...props}\n  />\n))\nVioletAvatar.displayName = \"VioletAvatar\"\n\nconst VioletAvatarImage = React.forwardRef<\n  React.ComponentRef<typeof AvatarPrimitive.Image>,\n  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>\n>(({ className, ...props }, ref) => (\n  <AvatarPrimitive.Image\n    ref={ref}\n    className={cn(\"aspect-square h-full w-full\", className)}\n    {...props}\n  />\n))\nVioletAvatarImage.displayName = \"VioletAvatarImage\"\n\nconst VioletAvatarFallback = React.forwardRef<\n  React.ComponentRef<typeof AvatarPrimitive.Fallback>,\n  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>\n>(({ className, ...props }, ref) => (\n  <AvatarPrimitive.Fallback\n    ref={ref}\n    className={cn(\n      \"flex h-full w-full items-center justify-center rounded-full bg-muted text-muted-foreground font-medium\",\n      className\n    )}\n    {...props}\n  />\n))\nVioletAvatarFallback.displayName = \"VioletAvatarFallback\"\n\nexport { VioletAvatar, VioletAvatarImage, VioletAvatarFallback, violetAvatarVariants }\n"
+    }
+  ]
+}

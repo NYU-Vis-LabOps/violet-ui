@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-input",
+  "type": "registry:ui",
+  "title": "Violet Input",
+  "description": "NYU form input with focus, error, and disabled states",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/lib/violet-utils.json"
+  ],
+  "files": [
+    {
+      "path": "ui/violet-input.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport interface VioletInputProps\n  extends React.InputHTMLAttributes<HTMLInputElement> {\n  error?: boolean\n  errorMessage?: string\n}\n\nconst VioletInput = React.forwardRef<HTMLInputElement, VioletInputProps>(\n  ({ className, type, error, errorMessage, id, ...props }, ref) => {\n    const errorId = error && errorMessage ? `${id ?? \"input\"}-error` : undefined\n    return (\n      <div className=\"w-full\">\n        <input\n          type={type}\n          id={id}\n          className={cn(\n            \"flex h-9 w-full rounded-md border border-input bg-background text-foreground px-3 py-1.5 text-base md:text-sm shadow-xs ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:shadow-sm disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted transition-all duration-200 ease-out\",\n            error && \"border-destructive focus-visible:ring-destructive\",\n            className\n          )}\n          ref={ref}\n          aria-invalid={error || undefined}\n          aria-describedby={errorId}\n          {...props}\n        />\n        {error && errorMessage && (\n          <p id={errorId} className=\"mt-1.5 text-xs font-medium text-destructive\" role=\"alert\">{errorMessage}</p>\n        )}\n      </div>\n    )\n  }\n)\nVioletInput.displayName = \"VioletInput\"\n\nexport { VioletInput }\n"
+    }
+  ]
+}

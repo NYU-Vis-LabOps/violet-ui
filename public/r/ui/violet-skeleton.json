@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-skeleton",
+  "type": "registry:ui",
+  "title": "violet-skeleton",
+  "description": "violet-skeleton component",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/lib/violet-utils.json"
+  ],
+  "files": [
+    {
+      "path": "ui/violet-skeleton.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst VioletSkeleton = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"animate-pulse rounded-md bg-foreground/10\", className)}\n    {...props}\n  />\n))\nVioletSkeleton.displayName = \"VioletSkeleton\"\n\nexport { VioletSkeleton }\n"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-status-badge",
+  "type": "registry:ui",
+  "title": "Violet Status Badge",
+  "description": "NYU status badge for task/project status display",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/lib/violet-utils.json"
+  ],
+  "files": [
+    {
+      "path": "ui/violet-status-badge.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst STATUS_CONFIG = {\n  \"not-started\": {\n    label: \"Not Started\",\n    className: \"bg-status-neutral text-status-neutral-foreground\",\n  },\n  \"in-progress\": {\n    label: \"In Progress\",\n    className: \"bg-info-tint text-info\",\n  },\n  \"due-soon\": {\n    label: \"Due Soon\",\n    className: \"bg-warning-tint text-warning-tint-foreground\",\n  },\n  overdue: {\n    label: \"Overdue\",\n    className: \"bg-destructive-tint text-destructive\",\n  },\n  completed: {\n    label: \"Completed\",\n    className: \"bg-success-tint text-success\",\n  },\n} as const\n\nexport type StatusType = keyof typeof STATUS_CONFIG\n\nexport interface VioletStatusBadgeProps\n  extends React.HTMLAttributes<HTMLSpanElement> {\n  status: StatusType\n  label?: string\n}\n\nconst VioletStatusBadge = React.forwardRef<\n  HTMLSpanElement,\n  VioletStatusBadgeProps\n>(({ status, label, className, ...props }, ref) => {\n  const config = STATUS_CONFIG[status]\n  return (\n    <span\n      ref={ref}\n      role=\"status\"\n      className={cn(\n        \"inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold tracking-wide\",\n        config.className,\n        className\n      )}\n      {...props}\n    >\n      {label ?? config.label}\n    </span>\n  )\n})\nVioletStatusBadge.displayName = \"VioletStatusBadge\"\n\nexport { VioletStatusBadge, STATUS_CONFIG }\n"
+    }
+  ]
+}

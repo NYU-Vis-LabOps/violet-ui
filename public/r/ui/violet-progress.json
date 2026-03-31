@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-progress",
+  "type": "registry:ui",
+  "title": "violet-progress",
+  "description": "violet-progress component",
+  "dependencies": [
+    "@radix-ui/react-progress",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/lib/violet-utils.json"
+  ],
+  "files": [
+    {
+      "path": "ui/violet-progress.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\nimport * as ProgressPrimitive from \"@radix-ui/react-progress\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst progressVariants = cva(\n  \"relative w-full overflow-hidden rounded-full bg-muted\",\n  {\n    variants: {\n      size: {\n        sm: \"h-1\",\n        default: \"h-2\",\n        lg: \"h-3\",\n      },\n    },\n    defaultVariants: {\n      size: \"default\",\n    },\n  }\n)\n\nconst indicatorVariants = cva(\n  \"h-full w-full flex-1 rounded-full motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary\",\n        success: \"bg-success\",\n        warning: \"bg-warning\",\n        destructive: \"bg-destructive\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\nexport interface VioletProgressProps\n  extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>,\n    VariantProps<typeof progressVariants>,\n    VariantProps<typeof indicatorVariants> {}\n\nconst VioletProgress = React.forwardRef<\n  React.ComponentRef<typeof ProgressPrimitive.Root>,\n  VioletProgressProps\n>(({ className, value, size, variant, ...props }, ref) => (\n  <ProgressPrimitive.Root\n    ref={ref}\n    className={cn(progressVariants({ size, className }))}\n    {...props}\n  >\n    <ProgressPrimitive.Indicator\n      className={cn(indicatorVariants({ variant }))}\n      style={{ transform: `translateX(-${100 - (value || 0)}%)` }}\n    />\n  </ProgressPrimitive.Root>\n))\nVioletProgress.displayName = \"VioletProgress\"\n\nexport { VioletProgress, progressVariants, indicatorVariants }\n"
+    }
+  ]
+}

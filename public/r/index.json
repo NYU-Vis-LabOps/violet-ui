@@ -1,0 +1,217 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "violet-ui",
+  "homepage": "https://github.com/NYU-Vis-LabOps/violet-ui",
+  "items": [
+    {
+      "name": "violet-theme",
+      "type": "registry:style",
+      "description": "NYU branded theme with purple color palette, Inter font, and CSS variables"
+    },
+    {
+      "name": "violet-utils",
+      "type": "registry:lib",
+      "description": "Utility functions (cn) for Violet UI"
+    },
+    {
+      "name": "violet-accordion",
+      "type": "registry:ui",
+      "description": "NYU accordion component with purple highlights"
+    },
+    {
+      "name": "violet-alert",
+      "type": "registry:ui",
+      "description": "violet-alert component"
+    },
+    {
+      "name": "violet-avatar",
+      "type": "registry:ui",
+      "description": "violet-avatar component"
+    },
+    {
+      "name": "violet-badge",
+      "type": "registry:ui",
+      "description": "NYU badge component with 7 semantic variants"
+    },
+    {
+      "name": "violet-breadcrumb",
+      "type": "registry:ui",
+      "description": "violet-breadcrumb component"
+    },
+    {
+      "name": "violet-button",
+      "type": "registry:ui",
+      "description": "NYU branded button with 6 variants and 5 sizes"
+    },
+    {
+      "name": "violet-card",
+      "type": "registry:ui",
+      "description": "NYU card component with bordered, elevated, and stat variants"
+    },
+    {
+      "name": "violet-checkbox",
+      "type": "registry:ui",
+      "description": "violet-checkbox component"
+    },
+    {
+      "name": "violet-combobox",
+      "type": "registry:ui",
+      "description": "violet-combobox component"
+    },
+    {
+      "name": "violet-confirm-dialog",
+      "type": "registry:ui",
+      "description": "violet-confirm-dialog component"
+    },
+    {
+      "name": "violet-data-table",
+      "type": "registry:ui",
+      "description": "violet-data-table component"
+    },
+    {
+      "name": "violet-date-picker",
+      "type": "registry:ui",
+      "description": "violet-date-picker component"
+    },
+    {
+      "name": "violet-dropdown-menu",
+      "type": "registry:ui",
+      "description": "violet-dropdown-menu component"
+    },
+    {
+      "name": "violet-empty-state",
+      "type": "registry:ui",
+      "description": "violet-empty-state component"
+    },
+    {
+      "name": "violet-file-upload",
+      "type": "registry:ui",
+      "description": "violet-file-upload component"
+    },
+    {
+      "name": "violet-form-field",
+      "type": "registry:ui",
+      "description": "violet-form-field component"
+    },
+    {
+      "name": "violet-form-repeater",
+      "type": "registry:ui",
+      "description": "violet-form-repeater component"
+    },
+    {
+      "name": "violet-input",
+      "type": "registry:ui",
+      "description": "NYU form input with focus, error, and disabled states"
+    },
+    {
+      "name": "violet-label",
+      "type": "registry:ui",
+      "description": "violet-label component"
+    },
+    {
+      "name": "violet-modal",
+      "type": "registry:ui",
+      "description": "NYU modal dialog with 5 size options"
+    },
+    {
+      "name": "violet-navbar",
+      "type": "registry:ui",
+      "description": "NYU top navigation bar with responsive hamburger menu"
+    },
+    {
+      "name": "violet-pagination",
+      "type": "registry:ui",
+      "description": "violet-pagination component"
+    },
+    {
+      "name": "violet-popover",
+      "type": "registry:ui",
+      "description": "violet-popover component"
+    },
+    {
+      "name": "violet-progress",
+      "type": "registry:ui",
+      "description": "violet-progress component"
+    },
+    {
+      "name": "violet-radio",
+      "type": "registry:ui",
+      "description": "violet-radio component"
+    },
+    {
+      "name": "violet-search-input",
+      "type": "registry:ui",
+      "description": "violet-search-input component"
+    },
+    {
+      "name": "violet-select",
+      "type": "registry:ui",
+      "description": "NYU select dropdown with purple focus ring"
+    },
+    {
+      "name": "violet-sidebar",
+      "type": "registry:ui",
+      "description": "violet-sidebar component"
+    },
+    {
+      "name": "violet-skeleton",
+      "type": "registry:ui",
+      "description": "violet-skeleton component"
+    },
+    {
+      "name": "violet-status-badge",
+      "type": "registry:ui",
+      "description": "NYU status badge for task/project status display"
+    },
+    {
+      "name": "violet-stepper",
+      "type": "registry:ui",
+      "description": "violet-stepper component"
+    },
+    {
+      "name": "violet-switch",
+      "type": "registry:ui",
+      "description": "violet-switch component"
+    },
+    {
+      "name": "violet-table",
+      "type": "registry:ui",
+      "description": "NYU data table with hover highlighting and optional striped rows"
+    },
+    {
+      "name": "violet-tabs",
+      "type": "registry:ui",
+      "description": "violet-tabs component"
+    },
+    {
+      "name": "violet-tag",
+      "type": "registry:ui",
+      "description": "violet-tag component"
+    },
+    {
+      "name": "violet-textarea",
+      "type": "registry:ui",
+      "description": "violet-textarea component"
+    },
+    {
+      "name": "violet-timeline",
+      "type": "registry:ui",
+      "description": "violet-timeline component"
+    },
+    {
+      "name": "violet-toast",
+      "type": "registry:ui",
+      "description": "violet-toast component"
+    },
+    {
+      "name": "violet-tooltip",
+      "type": "registry:ui",
+      "description": "violet-tooltip component"
+    },
+    {
+      "name": "use-esc-close",
+      "type": "registry:hook",
+      "description": "use-esc-close hook"
+    }
+  ]
+}

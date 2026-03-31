@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-table",
+  "type": "registry:ui",
+  "title": "Violet Table",
+  "description": "NYU data table with hover highlighting and optional striped rows",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
+    "https://nyu-vis-labops.github.io/violet-ui/r/lib/violet-utils.json"
+  ],
+  "files": [
+    {
+      "path": "ui/violet-table.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport interface VioletTableProps\n  extends React.HTMLAttributes<HTMLTableElement> {\n  striped?: boolean\n}\n\nconst VioletTable = React.forwardRef<HTMLTableElement, VioletTableProps>(\n  ({ className, striped, ...props }, ref) => (\n    <div className=\"relative w-full overflow-x-auto rounded-lg border border-border\">\n      <table\n        ref={ref}\n        className={cn(\"w-full caption-bottom text-sm\", className)}\n        data-striped={striped || undefined}\n        {...props}\n      />\n    </div>\n  )\n)\nVioletTable.displayName = \"VioletTable\"\n\nconst TableHeader = React.forwardRef<\n  HTMLTableSectionElement,\n  React.HTMLAttributes<HTMLTableSectionElement>\n>(({ className, ...props }, ref) => (\n  <thead\n    ref={ref}\n    className={cn(\"bg-muted/40 [&_tr]:border-b [&_tr]:border-border\", className)}\n    {...props}\n  />\n))\nTableHeader.displayName = \"TableHeader\"\n\nconst TableBody = React.forwardRef<\n  HTMLTableSectionElement,\n  React.HTMLAttributes<HTMLTableSectionElement>\n>(({ className, ...props }, ref) => (\n  <tbody\n    ref={ref}\n    className={cn(\n      \"[&_tr:last-child]:border-0 [table[data-striped]_&_tr:nth-child(even)]:bg-muted/30\",\n      className\n    )}\n    {...props}\n  />\n))\nTableBody.displayName = \"TableBody\"\n\nconst TableRow = React.forwardRef<\n  HTMLTableRowElement,\n  React.HTMLAttributes<HTMLTableRowElement>\n>(({ className, ...props }, ref) => (\n  <tr\n    ref={ref}\n    className={cn(\n      \"border-b border-border/75 transition-colors hover:bg-primary/[0.04] data-[state=selected]:bg-primary/10\",\n      className\n    )}\n    {...props}\n  />\n))\nTableRow.displayName = \"TableRow\"\n\nconst TableHead = React.forwardRef<\n  HTMLTableCellElement,\n  React.ThHTMLAttributes<HTMLTableCellElement>\n>(({ className, ...props }, ref) => (\n  <th\n    ref={ref}\n    className={cn(\n      \"h-9 px-3 text-left align-middle text-xs font-semibold uppercase tracking-wider text-muted-foreground [&:has([role=checkbox])]:pr-0\",\n      className\n    )}\n    {...props}\n  />\n))\nTableHead.displayName = \"TableHead\"\n\nconst TableCell = React.forwardRef<\n  HTMLTableCellElement,\n  React.TdHTMLAttributes<HTMLTableCellElement>\n>(({ className, ...props }, ref) => (\n  <td\n    ref={ref}\n    className={cn(\n      \"px-3 py-2.5 align-middle tabular-nums [&:has([role=checkbox])]:pr-0\",\n      className\n    )}\n    {...props}\n  />\n))\nTableCell.displayName = \"TableCell\"\n\nconst TableCaption = React.forwardRef<\n  HTMLTableCaptionElement,\n  React.HTMLAttributes<HTMLTableCaptionElement>\n>(({ className, ...props }, ref) => (\n  <caption\n    ref={ref}\n    className={cn(\"mt-4 text-xs text-muted-foreground\", className)}\n    {...props}\n  />\n))\nTableCaption.displayName = \"TableCaption\"\n\nexport {\n  VioletTable,\n  TableHeader,\n  TableBody,\n  TableRow,\n  TableHead,\n  TableCell,\n  TableCaption,\n}\n"
+    }
+  ]
+}
