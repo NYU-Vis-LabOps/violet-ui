@@ -4,6 +4,14 @@ import * as path from "path"
 const ROOT = path.resolve(__dirname, "..")
 const PUBLIC_R = path.join(ROOT, "public", "r")
 
+const REGISTRY_BASE_URL = "https://nyu-vis-labops.github.io/violet-ui/r"
+
+// Map short registry dep names to full URLs so shadcn resolves them correctly
+const REGISTRY_DEP_URLS: Record<string, string> = {
+  "violet-theme": `${REGISTRY_BASE_URL}/styles/violet-theme.json`,
+  "violet-utils": `${REGISTRY_BASE_URL}/lib/violet-utils.json`,
+}
+
 // Known npm package prefixes for dependency detection
 const NPM_IMPORT_PATTERNS = [
   /^@radix-ui\//,
@@ -245,10 +253,12 @@ function buildComponent(filename: string): RegistryItem {
 
   const deps = extractImports(content)
   // If component imports from @/lib/utils, add violet-utils as registry dep
-  const registryDeps = [...(meta.registryDeps || [])]
+  const registryDepsShort = [...(meta.registryDeps || [])]
   if (content.includes("@/lib/utils")) {
-    registryDeps.push("violet-utils")
+    registryDepsShort.push("violet-utils")
   }
+  // Resolve short names to full URLs for third-party registry compatibility
+  const registryDeps = registryDepsShort.map((d) => REGISTRY_DEP_URLS[d] || d)
 
   return {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",
