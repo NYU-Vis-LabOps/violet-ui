@@ -23,7 +23,7 @@ const VioletSelectTrigger = React.forwardRef<
     {...props}
   >
     {children}
-    <SelectPrimitive.Icon asChild>
+    <SelectPrimitive.Icon className="ml-auto">
       <svg
         width="15"
         height="15"
