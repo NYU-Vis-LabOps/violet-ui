@@ -204,7 +204,7 @@ const VioletDatePicker = React.forwardRef<
 
     return (
       <VioletPopover open={open} onOpenChange={setOpen}>
-        <VioletPopoverTrigger asChild>
+        <VioletPopoverTrigger>
           <button
             ref={ref}
             type="button"
@@ -311,7 +311,7 @@ const VioletDateRangePicker = React.forwardRef<
 
     return (
       <VioletPopover open={open} onOpenChange={setOpen}>
-        <VioletPopoverTrigger asChild>
+        <VioletPopoverTrigger>
           <button
             ref={ref}
             type="button"

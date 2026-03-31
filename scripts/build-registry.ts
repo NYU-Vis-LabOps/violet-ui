@@ -257,8 +257,19 @@ function buildComponent(filename: string): RegistryItem {
   if (content.includes("@/lib/utils")) {
     registryDepsShort.push("violet-utils")
   }
+  // Auto-detect sibling component imports (from "./violet-*")
+  const siblingRegex = /from\s+["']\.\/([^"']+)["']/g
+  let siblingMatch: RegExpExecArray | null
+  while ((siblingMatch = siblingRegex.exec(content)) !== null) {
+    const siblingName = siblingMatch[1]
+    if (!registryDepsShort.includes(siblingName)) {
+      registryDepsShort.push(siblingName)
+    }
+  }
   // Resolve short names to full URLs for third-party registry compatibility
-  const registryDeps = registryDepsShort.map((d) => REGISTRY_DEP_URLS[d] || d)
+  const registryDeps = registryDepsShort.map(
+    (d) => REGISTRY_DEP_URLS[d] || `${REGISTRY_BASE_URL}/ui/${d}.json`
+  )
 
   return {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",

@@ -89,7 +89,7 @@ const VioletCombobox = React.forwardRef<HTMLButtonElement, VioletComboboxProps>(
     return (
       <div className="w-full">
         <VioletPopover open={open} onOpenChange={setOpen}>
-          <VioletPopoverTrigger asChild>
+          <VioletPopoverTrigger>
             <button
               ref={ref}
               id={id}
@@ -126,7 +126,7 @@ const VioletCombobox = React.forwardRef<HTMLButtonElement, VioletComboboxProps>(
             </button>
           </VioletPopoverTrigger>
           <VioletPopoverContent
-            className="w-[var(--radix-popover-trigger-width)] p-0"
+            className="w-[var(--anchor-width)] p-0"
             align="start"
           >
             <CommandPrimitive
