@@ -49,15 +49,8 @@ function VioletPopoverContent({
   )
 }
 
-function VioletPopoverAnchor({
-  ...props
-}: PopoverPrimitive.Anchor.Props) {
-  return <PopoverPrimitive.Anchor data-slot="popover-anchor" {...props} />
-}
-
 export {
   VioletPopover,
   VioletPopoverTrigger,
   VioletPopoverContent,
-  VioletPopoverAnchor,
 }
