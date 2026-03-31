@@ -205,24 +205,19 @@ const VioletDatePicker = React.forwardRef<
     return (
       <VioletPopover open={open} onOpenChange={setOpen}>
         <VioletPopoverTrigger
-          render={
-            <button
-              ref={ref}
-              type="button"
-              disabled={disabled}
-              data-empty={!value || undefined}
-              className={cn(
-                "flex h-9 w-full items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-base md:text-sm text-foreground shadow-xs ring-offset-background",
-                "transition-all duration-150 ease-out",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
-                "data-[empty]:text-muted-foreground",
-                error &&
-                  "border-destructive focus-visible:ring-destructive",
-                className
-              )}
-            />
-          }
+          ref={ref}
+          disabled={disabled}
+          data-empty={!value || undefined}
+          className={cn(
+            "flex h-9 w-full items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-base md:text-sm text-foreground shadow-xs ring-offset-background",
+            "transition-all duration-150 ease-out",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
+            "data-[empty]:text-muted-foreground",
+            error &&
+              "border-destructive focus-visible:ring-destructive",
+            className
+          )}
         >
           <CalendarIcon className="h-4 w-4 shrink-0 opacity-60" />
           <span className="flex-1 truncate text-left">
@@ -314,24 +309,19 @@ const VioletDateRangePicker = React.forwardRef<
     return (
       <VioletPopover open={open} onOpenChange={setOpen}>
         <VioletPopoverTrigger
-          render={
-            <button
-              ref={ref}
-              type="button"
-              disabled={disabled}
-              data-empty={!value?.from || undefined}
-              className={cn(
-                "flex h-9 w-full items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-base md:text-sm text-foreground shadow-xs ring-offset-background",
-                "transition-all duration-150 ease-out",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
-                "data-[empty]:text-muted-foreground",
-                error &&
-                  "border-destructive focus-visible:ring-destructive",
-                className
-              )}
-            />
-          }
+          ref={ref}
+          disabled={disabled}
+          data-empty={!value?.from || undefined}
+          className={cn(
+            "flex h-9 w-full items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-base md:text-sm text-foreground shadow-xs ring-offset-background",
+            "transition-all duration-150 ease-out",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
+            "data-[empty]:text-muted-foreground",
+            error &&
+              "border-destructive focus-visible:ring-destructive",
+            className
+          )}
         >
           <CalendarIcon className="h-4 w-4 shrink-0 opacity-60" />
           <span className="flex-1 truncate text-left">

@@ -1,15 +1,15 @@
 import * as React from "react"
-import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
+import * as PopoverPrimitive from "@radix-ui/react-popover"
 
 import { cn } from "@/lib/utils"
 
-function VioletPopover({ ...props }: PopoverPrimitive.Root.Props) {
+function VioletPopover({ ...props }: PopoverPrimitive.PopoverProps) {
   return <PopoverPrimitive.Root data-slot="popover" {...props} />
 }
 
 function VioletPopoverTrigger({
   ...props
-}: PopoverPrimitive.Trigger.Props) {
+}: PopoverPrimitive.PopoverTriggerProps) {
   return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
 }
 
@@ -20,31 +20,23 @@ function VioletPopoverContent({
   side = "bottom",
   sideOffset = 4,
   ...props
-}: PopoverPrimitive.Popup.Props &
-  Pick<
-    PopoverPrimitive.Positioner.Props,
-    "align" | "alignOffset" | "side" | "sideOffset"
-  >) {
+}: PopoverPrimitive.PopoverContentProps) {
   return (
     <PopoverPrimitive.Portal>
-      <PopoverPrimitive.Positioner
+      <PopoverPrimitive.Content
+        data-slot="popover-content"
         align={align}
         alignOffset={alignOffset}
         side={side}
         sideOffset={sideOffset}
-        className="isolate z-50"
-      >
-        <PopoverPrimitive.Popup
-          data-slot="popover-content"
-          className={cn(
-            "z-50 w-auto rounded-md border border-border bg-card text-card-foreground p-4 shadow-lg outline-none",
-            "duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-            "data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
-            className
-          )}
-          {...props}
-        />
-      </PopoverPrimitive.Positioner>
+        className={cn(
+          "isolate z-50 w-auto rounded-md border border-border bg-card text-card-foreground p-4 shadow-lg outline-none",
+          "duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+          "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
+          className
+        )}
+        {...props}
+      />
     </PopoverPrimitive.Portal>
   )
 }

@@ -90,24 +90,19 @@ const VioletCombobox = React.forwardRef<HTMLButtonElement, VioletComboboxProps>(
       <div className="w-full">
         <VioletPopover open={open} onOpenChange={setOpen}>
           <VioletPopoverTrigger
-            render={
-              <button
-                ref={ref}
-                id={id}
-                type="button"
-                role="combobox"
-                aria-expanded={open}
-                aria-invalid={error || undefined}
-                aria-describedby={errorId}
-                disabled={disabled}
-                className={cn(
-                  "flex h-9 w-full items-center justify-between rounded-md border border-input bg-background text-foreground px-3 py-1.5 text-base md:text-sm shadow-xs ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:shadow-sm disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 ease-out",
-                  error && "border-destructive focus-visible:ring-destructive",
-                  !selectedLabel && "text-muted-foreground",
-                  className
-                )}
-              />
-            }
+            ref={ref}
+            id={id}
+            role="combobox"
+            aria-expanded={open}
+            aria-invalid={error || undefined}
+            aria-describedby={errorId}
+            disabled={disabled}
+            className={cn(
+              "flex h-9 w-full items-center justify-between rounded-md border border-input bg-background text-foreground px-3 py-1.5 text-base md:text-sm shadow-xs ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:shadow-sm disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 ease-out",
+              error && "border-destructive focus-visible:ring-destructive",
+              !selectedLabel && "text-muted-foreground",
+              className
+            )}
           >
             <span className="truncate">
               {selectedLabel || placeholder}
@@ -128,7 +123,7 @@ const VioletCombobox = React.forwardRef<HTMLButtonElement, VioletComboboxProps>(
             </svg>
           </VioletPopoverTrigger>
           <VioletPopoverContent
-            className="w-[var(--anchor-width)] p-0"
+            className="w-[var(--radix-popover-trigger-width)] p-0"
             align="start"
           >
             <CommandPrimitive

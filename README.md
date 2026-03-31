@@ -4,6 +4,16 @@ NYU branded [shadcn/ui](https://ui.shadcn.com) custom component registry. Instal
 
 ## Quick Start
 
+### Prerequisites
+
+Violet UI components are built on **Radix UI** primitives. When initializing your project with shadcn, use the Radix base:
+
+```bash
+npx shadcn@latest init -b radix
+```
+
+> **Note:** If your project uses `base-nova` style (Base UI), the shadcn CLI will automatically convert Radix imports to Base UI equivalents during installation. This is handled by the CLI and works correctly.
+
 ### Install the theme
 
 ```bash
