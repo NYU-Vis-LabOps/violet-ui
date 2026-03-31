@@ -7,23 +7,29 @@ function VioletPopover({ ...props }: PopoverPrimitive.PopoverProps) {
   return <PopoverPrimitive.Root data-slot="popover" {...props} />
 }
 
-function VioletPopoverTrigger({
-  ...props
-}: PopoverPrimitive.PopoverTriggerProps) {
-  return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
-}
+const VioletPopoverTrigger = React.forwardRef<
+  React.ComponentRef<typeof PopoverPrimitive.Trigger>,
+  PopoverPrimitive.PopoverTriggerProps
+>(({ ...props }, ref) => {
+  return <PopoverPrimitive.Trigger ref={ref} data-slot="popover-trigger" {...props} />
+})
+VioletPopoverTrigger.displayName = "VioletPopoverTrigger"
 
-function VioletPopoverContent({
+const VioletPopoverContent = React.forwardRef<
+  React.ComponentRef<typeof PopoverPrimitive.Content>,
+  PopoverPrimitive.PopoverContentProps
+>(({
   className,
   align = "center",
   alignOffset = 0,
   side = "bottom",
   sideOffset = 4,
   ...props
-}: PopoverPrimitive.PopoverContentProps) {
+}, ref) => {
   return (
     <PopoverPrimitive.Portal>
       <PopoverPrimitive.Content
+        ref={ref}
         data-slot="popover-content"
         align={align}
         alignOffset={alignOffset}
@@ -39,7 +45,8 @@ function VioletPopoverContent({
       />
     </PopoverPrimitive.Portal>
   )
-}
+})
+VioletPopoverContent.displayName = "VioletPopoverContent"
 
 export {
   VioletPopover,
