@@ -9,7 +9,7 @@ export interface VioletTableProps
 
 const VioletTable = React.forwardRef<HTMLTableElement, VioletTableProps>(
   ({ className, striped, ...props }, ref) => (
-    <div className="relative w-full overflow-x-auto rounded-lg border border-border">
+    <div className="relative w-full overflow-x-auto rounded-md border border-border">
       <table
         ref={ref}
         className={cn("w-full caption-bottom text-sm", className)}
@@ -70,7 +70,7 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      "h-9 px-3 text-left align-middle text-xs font-semibold uppercase tracking-wider text-muted-foreground [&:has([role=checkbox])]:pr-0",
+        "h-9 px-3 text-left align-middle text-xs font-semibold uppercase tracking-wide text-muted-foreground [&:has([role=checkbox])]:pr-0",
       className
     )}
     {...props}

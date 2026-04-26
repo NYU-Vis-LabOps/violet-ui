@@ -121,7 +121,7 @@ function VioletDataTableInner<TData>(
 
   return (
     <div ref={_ref} className={cn("w-full", className)}>
-      <div className="relative w-full overflow-x-auto rounded-lg border border-border">
+    <div className="relative w-full overflow-x-auto rounded-md border border-border">
         <table className="w-full caption-bottom text-sm">
           <thead className="bg-muted/40 [&_tr]:border-b [&_tr]:border-border">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -130,7 +130,7 @@ function VioletDataTableInner<TData>(
                   <th
                     key={header.id}
                     className={cn(
-                      "h-9 px-3 text-left align-middle text-xs font-semibold uppercase tracking-wider text-muted-foreground [&:has([role=checkbox])]:pr-0",
+        "h-9 px-3 text-left align-middle text-xs font-semibold uppercase tracking-wide text-muted-foreground [&:has([role=checkbox])]:pr-0",
                       header.column.getCanSort() && "cursor-pointer select-none"
                     )}
                     style={

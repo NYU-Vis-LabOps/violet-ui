@@ -11,7 +11,7 @@ const meta: Meta<typeof VioletSidebar> = {
   component: VioletSidebar,
   decorators: [
     (Story) => (
-      <div className="h-[500px] border border-border rounded-lg overflow-hidden flex">
+  <div className="h-[500px] border border-border rounded-md overflow-hidden flex">
         <Story />
         <div className="flex-1 p-5 bg-background text-muted-foreground text-sm">
           Main content area
@@ -179,6 +179,44 @@ export const Collapsed: Story = {
           <VioletSidebarItem icon={<ClockIcon />}>Audit Log</VioletSidebarItem>
         </VioletSidebarSection>
       </VioletSidebar>
+    )
+  },
+}
+
+export const ExternalToggle: Story = {
+  render: () => {
+    const [collapsed, setCollapsed] = useState(false)
+
+    return (
+      <>
+        <VioletSidebar
+          collapsed={collapsed}
+          onCollapsedChange={setCollapsed}
+          showCollapseToggle={false}
+        >
+          <VioletSidebarSection title="Admin">
+            <VioletSidebarItem icon={<HomeIcon />} active>
+              Dashboard
+            </VioletSidebarItem>
+            <VioletSidebarItem icon={<FileIcon />}>Requests</VioletSidebarItem>
+            <VioletSidebarItem icon={<GearIcon />}>Settings</VioletSidebarItem>
+          </VioletSidebarSection>
+        </VioletSidebar>
+        <div className="flex flex-1 flex-col">
+          <div className="flex h-12 items-center border-b border-border px-4">
+            <button
+              type="button"
+              className="rounded-md border border-border px-3 py-1.5 text-sm font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              onClick={() => setCollapsed((value) => !value)}
+            >
+              {collapsed ? "Expand" : "Collapse"} sidebar
+            </button>
+          </div>
+          <div className="flex-1 p-5 text-sm text-muted-foreground">
+            External header owns the collapse control.
+          </div>
+        </div>
+      </>
     )
   },
 }

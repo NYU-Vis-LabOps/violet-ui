@@ -28,6 +28,18 @@ function PaginationDemo({ totalPages }: { totalPages: number }) {
   )
 }
 
+function DisabledPaginationDemo() {
+  const [page, setPage] = useState(4)
+  return (
+    <VioletPagination
+      page={page}
+      totalPages={12}
+      disabled
+      onPageChange={setPage}
+    />
+  )
+}
+
 export const Default: Story = {
   render: () => <PaginationDemo totalPages={10} />,
 }
@@ -38,4 +50,27 @@ export const FewPages: Story = {
 
 export const ManyPages: Story = {
   render: () => <PaginationDemo totalPages={50} />,
+}
+
+export const WithBoundaryButtons: Story = {
+  render: () => <PaginationDemo totalPages={20} />,
+}
+
+export const Disabled: Story = {
+  render: () => <DisabledPaginationDemo />,
+}
+
+export const SinglePageHidden: Story = {
+  render: () => (
+    <div className="rounded-md border border-border p-4 text-sm text-muted-foreground">
+      <VioletPagination page={1} totalPages={1} onPageChange={() => undefined} />
+      Single-page pagination renders no navigation.
+    </div>
+  ),
+}
+
+export const ClampedOutOfRange: Story = {
+  render: () => (
+    <VioletPagination page={99} totalPages={8} onPageChange={() => undefined} />
+  ),
 }

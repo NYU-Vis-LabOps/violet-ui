@@ -2,6 +2,16 @@ import { useState } from "react"
 import type { Meta, StoryObj } from "@storybook/react"
 import { VioletCombobox, type ComboboxOption } from "./violet-combobox"
 import { VioletLabel } from "./violet-label"
+import {
+  VioletModal,
+  VioletModalContent,
+  VioletModalTrigger,
+  ModalBody,
+  ModalDescription,
+  ModalHeader,
+  ModalTitle,
+} from "./violet-modal"
+import { VioletButton } from "./violet-button"
 
 const meta: Meta<typeof VioletCombobox> = {
   title: "Components/VioletCombobox",
@@ -140,6 +150,45 @@ export const Grouped: Story = {
           placeholder="Select building..."
         />
       </div>
+    )
+  },
+}
+
+export const InScrollableModal: Story = {
+  render: () => {
+    const [value, setValue] = useState("")
+
+    return (
+      <VioletModal>
+        <VioletModalTrigger asChild>
+          <VioletButton>Open scrollable modal</VioletButton>
+        </VioletModalTrigger>
+        <VioletModalContent>
+          <ModalHeader>
+            <ModalTitle>Scrollable combobox shell</ModalTitle>
+            <ModalDescription>
+              The option list should receive wheel events without scrolling the modal body.
+            </ModalDescription>
+          </ModalHeader>
+          <ModalBody className="max-h-80 space-y-4">
+            <div className="h-40 rounded-md border border-border bg-muted/40 p-3 text-sm text-muted-foreground">
+              Content above the field
+            </div>
+            <div className="w-72">
+              <VioletLabel className="mb-1.5 block">Room</VioletLabel>
+              <VioletCombobox
+                options={manyOptions}
+                value={value}
+                onValueChange={setValue}
+                placeholder="Search rooms..."
+              />
+            </div>
+            <div className="h-56 rounded-md border border-border bg-muted/40 p-3 text-sm text-muted-foreground">
+              Content below the field
+            </div>
+          </ModalBody>
+        </VioletModalContent>
+      </VioletModal>
     )
   },
 }

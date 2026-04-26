@@ -24,6 +24,11 @@
       "description": "violet-alert component"
     },
     {
+      "name": "violet-autocomplete-input",
+      "type": "registry:ui",
+      "description": "Input-backed autocomplete with local filtering, remote loading, and custom values"
+    },
+    {
       "name": "violet-avatar",
       "type": "registry:ui",
       "description": "violet-avatar component"
@@ -56,12 +61,12 @@
     {
       "name": "violet-combobox",
       "type": "registry:ui",
-      "description": "violet-combobox component"
+      "description": "Autocomplete combobox with search, grouping, custom values, and nested-scroll support"
     },
     {
       "name": "violet-confirm-dialog",
       "type": "registry:ui",
-      "description": "violet-confirm-dialog component"
+      "description": "Confirmation dialog with default, destructive, and opt-in overlay dismissal modes"
     },
     {
       "name": "violet-data-table",
@@ -86,7 +91,7 @@
     {
       "name": "violet-file-upload",
       "type": "registry:ui",
-      "description": "violet-file-upload component"
+      "description": "Drag and drop file upload with validation and reset support"
     },
     {
       "name": "violet-form-field",
@@ -111,7 +116,12 @@
     {
       "name": "violet-modal",
       "type": "registry:ui",
-      "description": "NYU modal dialog with 5 size options"
+      "description": "NYU modal dialog with semantic title and description primitives"
+    },
+    {
+      "name": "violet-multi-combobox",
+      "type": "registry:ui",
+      "description": "Searchable multi-select combobox with grouping, chips, select all, and clear actions"
     },
     {
       "name": "violet-navbar",
@@ -121,12 +131,12 @@
     {
       "name": "violet-pagination",
       "type": "registry:ui",
-      "description": "violet-pagination component"
+      "description": "Pagination with clamped pages, disabled state, and optional boundary controls"
     },
     {
       "name": "violet-popover",
       "type": "registry:ui",
-      "description": "violet-popover component"
+      "description": "Popover primitive with pointer-safe content for modal and scrollable shells"
     },
     {
       "name": "violet-progress",
@@ -151,7 +161,7 @@
     {
       "name": "violet-sidebar",
       "type": "registry:ui",
-      "description": "violet-sidebar component"
+      "description": "Sidebar navigation with sections, icons, collapsible state, and optional built-in toggle"
     },
     {
       "name": "violet-skeleton",

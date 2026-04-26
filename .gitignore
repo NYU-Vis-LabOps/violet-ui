@@ -68,3 +68,4 @@ test-results/
 # Optional local memory / session files used by agent tooling
 memory.md
 session.md
+skills-lock.json

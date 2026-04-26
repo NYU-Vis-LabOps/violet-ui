@@ -87,3 +87,24 @@ export const WithTrigger: Story = {
     </VioletConfirmDialog>
   ),
 }
+
+export const OverlayDismissible: Story = {
+  render: () => {
+    const [open, setOpen] = useState(false)
+    return (
+      <VioletConfirmDialog
+        open={open}
+        onOpenChange={setOpen}
+        title="Discard draft?"
+        description="This story opts into overlay click dismissal for non-destructive confirmation flows."
+        confirmLabel="Discard"
+        closeOnOverlayClick
+        onConfirm={() => setOpen(false)}
+      >
+        <VioletConfirmDialogTrigger asChild>
+          <VioletButton variant="outline">Open dismissible dialog</VioletButton>
+        </VioletConfirmDialogTrigger>
+      </VioletConfirmDialog>
+    )
+  },
+}

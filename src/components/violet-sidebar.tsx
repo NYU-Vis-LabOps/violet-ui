@@ -8,6 +8,7 @@ export interface VioletSidebarProps extends React.HTMLAttributes<HTMLElement> {
   collapsed?: boolean
   onCollapsedChange?: (collapsed: boolean) => void
   width?: number
+  showCollapseToggle?: boolean
 }
 
 const VioletSidebar = React.forwardRef<HTMLElement, VioletSidebarProps>(
@@ -16,6 +17,7 @@ const VioletSidebar = React.forwardRef<HTMLElement, VioletSidebarProps>(
       collapsed = false,
       onCollapsedChange,
       width = 240,
+      showCollapseToggle = true,
       className,
       children,
       ...props
@@ -33,7 +35,7 @@ const VioletSidebar = React.forwardRef<HTMLElement, VioletSidebarProps>(
       )}
       {...props}
     >
-      {onCollapsedChange && (
+      {onCollapsedChange && showCollapseToggle && (
         <div className="flex items-center justify-end p-2">
           <button
             type="button"
@@ -80,7 +82,7 @@ const VioletSidebarSection = React.forwardRef<
 >(({ title, className, children, ...props }, ref) => (
   <div ref={ref} className={cn("px-2 py-1", className)} {...props}>
     {title && (
-      <p className="mb-1 px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <p className="mb-1 px-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
         {title}
       </p>
     )}
