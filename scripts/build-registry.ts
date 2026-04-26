@@ -54,6 +54,11 @@ const COMPONENT_META: Record<string, { title: string; description: string; regis
     description: "NYU branded button with 6 variants and 5 sizes",
     registryDeps: ["violet-theme"],
   },
+  "violet-autocomplete-input": {
+    title: "Violet Autocomplete Input",
+    description: "Input-backed autocomplete with local filtering, remote loading, and custom values",
+    registryDeps: ["violet-theme"],
+  },
   "violet-card": {
     title: "Violet Card",
     description: "NYU card component with bordered, elevated, and stat variants",
@@ -74,9 +79,29 @@ const COMPONENT_META: Record<string, { title: string; description: string; regis
     description: "NYU form input with focus, error, and disabled states",
     registryDeps: ["violet-theme"],
   },
+  "violet-combobox": {
+    title: "Violet Combobox",
+    description: "Autocomplete combobox with search, grouping, custom values, and nested-scroll support",
+    registryDeps: ["violet-theme"],
+  },
+  "violet-confirm-dialog": {
+    title: "Violet Confirm Dialog",
+    description: "Confirmation dialog with default, destructive, and opt-in overlay dismissal modes",
+    registryDeps: ["violet-theme"],
+  },
+  "violet-file-upload": {
+    title: "Violet File Upload",
+    description: "Drag and drop file upload with validation and reset support",
+    registryDeps: ["violet-theme"],
+  },
   "violet-modal": {
     title: "Violet Modal",
-    description: "NYU modal dialog with 5 size options",
+    description: "NYU modal dialog with semantic title and description primitives",
+    registryDeps: ["violet-theme"],
+  },
+  "violet-multi-combobox": {
+    title: "Violet Multi Combobox",
+    description: "Searchable multi-select combobox with grouping, chips, select all, and clear actions",
     registryDeps: ["violet-theme"],
   },
   "violet-navbar": {
@@ -92,6 +117,21 @@ const COMPONENT_META: Record<string, { title: string; description: string; regis
   "violet-select": {
     title: "Violet Select",
     description: "NYU select dropdown with purple focus ring",
+    registryDeps: ["violet-theme"],
+  },
+  "violet-pagination": {
+    title: "Violet Pagination",
+    description: "Pagination with clamped pages, disabled state, and optional boundary controls",
+    registryDeps: ["violet-theme"],
+  },
+  "violet-popover": {
+    title: "Violet Popover",
+    description: "Popover primitive with pointer-safe content for modal and scrollable shells",
+    registryDeps: ["violet-theme"],
+  },
+  "violet-sidebar": {
+    title: "Violet Sidebar",
+    description: "Sidebar navigation with sections, icons, collapsible state, and optional built-in toggle",
     registryDeps: ["violet-theme"],
   },
   "violet-accordion": {

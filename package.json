@@ -4,6 +4,9 @@
   "description": "NYU branded shadcn/ui custom component registry",
   "scripts": {
     "build:registry": "pnpm tsx scripts/build-registry.ts",
+    "validate:registry": "node scripts/validate-registry.mjs",
+    "smoke:consumer": "node scripts/smoke-consumer-install.mjs",
+    "design:detect": "npx -y impeccable@2.1.7 detect src/ --json --fast",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build -o public/storybook"
   },

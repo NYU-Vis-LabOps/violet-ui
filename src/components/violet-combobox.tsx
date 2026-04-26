@@ -24,6 +24,7 @@ export interface VioletComboboxProps {
   disabled?: boolean
   error?: boolean
   errorMessage?: string
+  stopWheelPropagation?: boolean
   className?: string
   id?: string
 }
@@ -40,6 +41,7 @@ const VioletCombobox = React.forwardRef<HTMLButtonElement, VioletComboboxProps>(
       disabled = false,
       error = false,
       errorMessage,
+      stopWheelPropagation = true,
       className,
       id,
     },
@@ -153,7 +155,10 @@ const VioletCombobox = React.forwardRef<HTMLButtonElement, VioletComboboxProps>(
                   className="flex h-9 w-full bg-transparent py-2 text-base md:text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </div>
-              <CommandPrimitive.List className="max-h-60 overflow-y-auto p-1">
+              <CommandPrimitive.List
+                className="max-h-60 overflow-y-auto p-1"
+                onWheel={stopWheelPropagation ? (e) => e.stopPropagation() : undefined}
+              >
                 <CommandPrimitive.Empty className="py-4 text-center text-sm text-muted-foreground">
                   {emptyText}
                 </CommandPrimitive.Empty>
@@ -163,7 +168,7 @@ const VioletCombobox = React.forwardRef<HTMLButtonElement, VioletComboboxProps>(
                     heading={group || undefined}
                     className={cn(
                       group &&
-                        "[&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:pl-2 [&_[cmdk-group-heading]]:pr-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:text-muted-foreground"
+            "[&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:pl-2 [&_[cmdk-group-heading]]:pr-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wide [&_[cmdk-group-heading]]:text-muted-foreground"
                     )}
                   >
                     {items.map((opt) => (

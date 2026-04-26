@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  registry:
+    name: Registry, Storybook, Design
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build registry
+        run: pnpm build:registry
+
+      - name: Validate registry metadata
+        run: pnpm validate:registry
+
+      - name: Check generated registry is committed
+        run: git diff --exit-code public/r
+
+      - name: Build Storybook
+        run: pnpm build:storybook
+
+      - name: Run Impeccable design detector
+        run: pnpm design:detect
+
+      - name: Upload public artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: violet-ui-public
+          path: public
+          if-no-files-found: error
+
+  consumer-smoke:
+    name: shadcn Consumer Smoke
+    runs-on: ubuntu-latest
+    needs: registry
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build registry
+        run: pnpm build:registry
+
+      - name: Install registry into a Next consumer and build
+        run: pnpm smoke:consumer

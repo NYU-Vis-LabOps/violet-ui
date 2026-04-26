@@ -8,6 +8,7 @@ export interface VioletFileUploadProps {
   accept?: string
   maxSize?: number
   multiple?: boolean
+  resetKey?: string | number
   disabled?: boolean
   error?: boolean
   errorMessage?: string
@@ -21,6 +22,7 @@ const VioletFileUpload = React.forwardRef<HTMLDivElement, VioletFileUploadProps>
       accept,
       maxSize = MAX_FILE_SIZE,
       multiple = false,
+      resetKey,
       disabled = false,
       error,
       errorMessage,
@@ -33,6 +35,18 @@ const VioletFileUpload = React.forwardRef<HTMLDivElement, VioletFileUploadProps>
     const [isDragging, setIsDragging] = React.useState(false)
     const [files, setFiles] = React.useState<File[]>([])
     const [sizeError, setSizeError] = React.useState<string | null>(null)
+    const previousResetKey = React.useRef(resetKey)
+
+    React.useEffect(() => {
+      if (previousResetKey.current === resetKey) return
+      previousResetKey.current = resetKey
+      setFiles([])
+      setSizeError(null)
+      if (inputRef.current) {
+        inputRef.current.value = ""
+      }
+      onChange?.([])
+    }, [resetKey, onChange])
 
     const handleFiles = React.useCallback(
       (incoming: FileList | null) => {

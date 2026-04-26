@@ -10,15 +10,15 @@ const violetButtonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md active:shadow-sm",
+          "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-sm active:shadow-xs",
         secondary:
           "bg-muted text-foreground hover:bg-muted/80",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md active:shadow-sm",
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-sm active:shadow-xs",
         ghost:
           "text-primary hover:bg-primary/10 hover:text-primary",
         outline:
-          "border border-primary bg-transparent text-primary hover:bg-primary/10 active:bg-primary active:text-primary-foreground",
+          "border border-border bg-background text-foreground hover:border-primary/40 hover:bg-primary/5 hover:text-primary active:bg-primary/10",
         link:
           "text-primary underline-offset-4 hover:underline",
       },

@@ -116,7 +116,7 @@ const VioletNavbar = React.forwardRef<HTMLElement, VioletNavbarProps>(
 
         {/* Mobile panel */}
         {mobileOpen && (
-          <div className="absolute top-12 left-0 right-0 bg-primary md:hidden flex flex-col p-5 gap-3 min-h-[calc(100vh-3rem)] shadow-lg">
+          <div className="absolute top-12 left-0 right-0 bg-primary md:hidden flex flex-col p-5 gap-3 min-h-[calc(100vh-3rem)] shadow-md">
             {links.map((link) => (
               <a
                 key={link.href}

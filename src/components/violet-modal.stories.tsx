@@ -80,3 +80,26 @@ export const AllSizes: Story = {
     </div>
   ),
 }
+
+export const SemanticTitleDescription: Story = {
+  render: () => (
+    <VioletModal>
+      <VioletModalTrigger asChild>
+        <VioletButton>Open semantic modal</VioletButton>
+      </VioletModalTrigger>
+      <VioletModalContent>
+        <ModalHeader>
+          <ModalTitle>Dialog title primitive</ModalTitle>
+          <ModalDescription>
+            This description is wired through the Radix Dialog description primitive.
+          </ModalDescription>
+        </ModalHeader>
+        <ModalBody>
+          <p className="text-sm text-muted-foreground">
+            Screen readers should receive the title and description without Radix warnings.
+          </p>
+        </ModalBody>
+      </VioletModalContent>
+    </VioletModal>
+  ),
+}
