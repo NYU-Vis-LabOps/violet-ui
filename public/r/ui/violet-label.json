@@ -5,7 +5,7 @@
   "title": "violet-label",
   "description": "violet-label component",
   "dependencies": [
-    "@radix-ui/react-label"
+    "radix-ui"
   ],
   "registryDependencies": [
     "https://nyu-vis-labops.github.io/violet-ui/r/styles/violet-theme.json",
@@ -15,7 +15,7 @@
     {
       "path": "ui/violet-label.tsx",
       "type": "registry:ui",
-      "content": "import * as React from \"react\"\nimport * as LabelPrimitive from \"@radix-ui/react-label\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst VioletLabel = React.forwardRef<\n  React.ComponentRef<typeof LabelPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>\n>(({ className, ...props }, ref) => (\n  <LabelPrimitive.Root\n    ref={ref}\n    className={cn(\n      \"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n      className\n    )}\n    {...props}\n  />\n))\nVioletLabel.displayName = \"VioletLabel\"\n\nexport { VioletLabel }\n"
+      "content": "import * as React from \"react\"\nimport { Label as LabelPrimitive } from \"radix-ui\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst VioletLabel = React.forwardRef<\n  React.ComponentRef<typeof LabelPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>\n>(({ className, ...props }, ref) => (\n  <LabelPrimitive.Root\n    ref={ref}\n    className={cn(\n      \"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n      className\n    )}\n    {...props}\n  />\n))\nVioletLabel.displayName = \"VioletLabel\"\n\nexport { VioletLabel }\n"
     }
   ]
 }

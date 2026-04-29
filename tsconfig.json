@@ -12,6 +12,8 @@
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "dist",
+    "ignoreDeprecations": "6.0",
+    "types": ["node"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

@@ -14,7 +14,7 @@ const REGISTRY_DEP_URLS: Record<string, string> = {
 
 // Known npm package prefixes for dependency detection
 const NPM_IMPORT_PATTERNS = [
-  /^@radix-ui\//,
+  /^radix-ui/,
   /^class-variance-authority/,
   /^clsx/,
   /^tailwind-merge/,
