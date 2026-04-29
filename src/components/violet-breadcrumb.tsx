@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
+import { Slot as SlotPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 
@@ -40,7 +40,7 @@ const BreadcrumbLink = React.forwardRef<
   HTMLAnchorElement,
   React.ComponentPropsWithoutRef<"a"> & { asChild?: boolean }
 >(({ asChild, className, ...props }, ref) => {
-  const Comp = asChild ? Slot : "a"
+  const Comp = asChild ? SlotPrimitive.Root : "a"
   return (
     <Comp
       ref={ref}

@@ -21,13 +21,13 @@ function VioletToaster({ className, ...props }: VioletToasterProps) {
           cancelButton:
             "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground group-[.toast]:text-xs group-[.toast]:font-medium group-[.toast]:rounded-md group-[.toast]:px-2 group-[.toast]:py-1",
           success:
-            "group-[.toaster]:border-success group-[.toaster]:text-success-foreground",
+            "group-[.toaster]:border-success/20 group-[.toaster]:bg-success-tint group-[.toaster]:text-success-tint-foreground",
           error:
-            "group-[.toaster]:border-destructive group-[.toaster]:text-destructive",
+            "group-[.toaster]:border-destructive/20 group-[.toaster]:bg-destructive-tint group-[.toaster]:text-destructive-tint-foreground",
           warning:
-            "group-[.toaster]:border-warning group-[.toaster]:text-warning-foreground",
+            "group-[.toaster]:border-warning/25 group-[.toaster]:bg-warning-tint group-[.toaster]:text-warning-tint-foreground",
           info:
-            "group-[.toaster]:border-info group-[.toaster]:text-info-foreground",
+            "group-[.toaster]:border-info/20 group-[.toaster]:bg-info-tint group-[.toaster]:text-info-tint-foreground",
         },
       }}
       {...props}

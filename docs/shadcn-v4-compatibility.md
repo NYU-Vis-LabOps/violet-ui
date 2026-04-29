@@ -69,15 +69,15 @@ Components like Combobox and DatePicker need a custom trigger button inside a Po
 
 | Component | Primitive Source | Notes |
 |-----------|-----------------|-------|
-| `violet-popover` | `@radix-ui/react-popover` | No `asChild` used |
+| `violet-popover` | `radix-ui` / `Popover` | No `asChild` used |
 | `violet-combobox` | cmdk + popover | Props passed directly to trigger |
 | `violet-date-picker` | react-day-picker + popover | Props passed directly to trigger |
-| `violet-select` | `@radix-ui/react-select` | Icon uses className, not `asChild` |
-| `violet-button` | `@radix-ui/react-slot` | `asChild` as variable reference (safe) |
-| `violet-breadcrumb` | `@radix-ui/react-slot` | `asChild` as variable reference (safe) |
-| `violet-modal` | `@radix-ui/react-dialog` | No `asChild` in source |
-| `violet-dropdown-menu` | `@radix-ui/react-dropdown-menu` | No `asChild` in source |
-| `violet-tooltip` | `@radix-ui/react-tooltip` | No `asChild` in source |
+| `violet-select` | `radix-ui` / `Select` | Icon uses className, not `asChild` |
+| `violet-button` | `radix-ui` / `Slot` | `asChild` as variable reference (safe) |
+| `violet-breadcrumb` | `radix-ui` / `Slot` | `asChild` as variable reference (safe) |
+| `violet-modal` | `radix-ui` / `Dialog` | No `asChild` in source |
+| `violet-dropdown-menu` | `radix-ui` / `DropdownMenu` | No `asChild` in source |
+| `violet-tooltip` | `radix-ui` / `Tooltip` | No `asChild` in source |
 
 ## Testing Checklist
 
