@@ -209,7 +209,7 @@ const VioletDatePicker = React.forwardRef<
           disabled={disabled}
           data-empty={!value || undefined}
           className={cn(
-            "flex h-9 w-full items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-base md:text-sm text-foreground shadow-xs ring-offset-background",
+            "flex h-9 w-full items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-sm text-foreground shadow-xs ring-offset-background",
             "transition-all duration-150 ease-out",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
             "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
@@ -313,7 +313,7 @@ const VioletDateRangePicker = React.forwardRef<
           disabled={disabled}
           data-empty={!value?.from || undefined}
           className={cn(
-            "flex h-9 w-full items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-base md:text-sm text-foreground shadow-xs ring-offset-background",
+            "flex h-9 w-full items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-sm text-foreground shadow-xs ring-offset-background",
             "transition-all duration-150 ease-out",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
             "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",

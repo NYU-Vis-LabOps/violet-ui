@@ -45,6 +45,32 @@ export const WithValue: Story = {
   },
 }
 
+export const Loading: Story = {
+  render: () => (
+    <VioletSearchInput
+      placeholder="Search requests..."
+      value=""
+      isLoading
+      readOnly
+    />
+  ),
+}
+
+export const LoadingWithClear: Story = {
+  render: () => {
+    const [value, setValue] = useState("Lab 1201")
+    return (
+      <VioletSearchInput
+        placeholder="Search requests..."
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onClear={() => setValue("")}
+        isLoading
+      />
+    )
+  },
+}
+
 export const Disabled: Story = {
   render: () => (
     <VioletSearchInput

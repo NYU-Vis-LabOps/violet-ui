@@ -31,13 +31,16 @@ export interface VioletMultiComboboxProps {
   showSelectedChips?: boolean
   showSelectAll?: boolean
   showClear?: boolean
+  allowCustomValue?: boolean
   stopWheelPropagation?: boolean
+  avoidPopoverCollisions?: boolean
   renderOption?: (
     option: VioletMultiComboboxOption,
     selected: boolean
   ) => React.ReactNode
   renderSelectedLabel?: (selected: VioletMultiComboboxOption[]) => React.ReactNode
   className?: string
+  ariaLabel?: string
   id?: string
 }
 
@@ -60,10 +63,13 @@ const VioletMultiCombobox = React.forwardRef<
       showSelectedChips = true,
       showSelectAll = false,
       showClear = true,
+      allowCustomValue = false,
       stopWheelPropagation = true,
+      avoidPopoverCollisions,
       renderOption,
       renderSelectedLabel,
       className,
+      ariaLabel,
       id,
     },
     ref
@@ -78,9 +84,14 @@ const VioletMultiCombobox = React.forwardRef<
     const selectedOptions = React.useMemo(
       () =>
         value
-          .map((selectedValue) => optionMap.get(selectedValue))
+          .map((selectedValue) => {
+            const option = optionMap.get(selectedValue)
+            if (option) return option
+            if (!allowCustomValue) return undefined
+            return { value: selectedValue, label: selectedValue }
+          })
           .filter((option): option is VioletMultiComboboxOption => Boolean(option)),
-      [optionMap, value]
+      [allowCustomValue, optionMap, value]
     )
 
     const selectableValues = React.useMemo(
@@ -124,7 +135,56 @@ const VioletMultiCombobox = React.forwardRef<
       const allSelected = selectableValues.every((optionValue) =>
         value.includes(optionValue)
       )
-      updateValue(allSelected ? [] : selectableValues)
+      const customSelectedValues = allowCustomValue
+        ? value.filter((selectedValue) => !selectableValues.includes(selectedValue))
+        : []
+      updateValue(
+        allSelected
+          ? customSelectedValues
+          : [...customSelectedValues, ...selectableValues]
+      )
+    }
+
+    const searchValue = search.trim()
+    const normalizedSearch = searchValue.toLowerCase()
+    const exactSearchMatch = React.useMemo(() => {
+      if (!normalizedSearch) return undefined
+      return options.find(
+        (option) =>
+          option.value.toLowerCase() === normalizedSearch ||
+          option.label.toLowerCase() === normalizedSearch
+      )
+    }, [normalizedSearch, options])
+    const hasSearchResult = React.useMemo(() => {
+      if (!normalizedSearch) return options.length > 0
+      return options.some(
+        (option) =>
+          option.value.toLowerCase().includes(normalizedSearch) ||
+          option.label.toLowerCase().includes(normalizedSearch) ||
+          option.description?.toLowerCase().includes(normalizedSearch)
+      )
+    }, [normalizedSearch, options])
+    const hasSelectedSearchValue = React.useMemo(() => {
+      if (!normalizedSearch) return false
+      return value.some((selectedValue) => {
+        const option = optionMap.get(selectedValue)
+        return (
+          selectedValue.toLowerCase() === normalizedSearch ||
+          option?.label.toLowerCase() === normalizedSearch
+        )
+      })
+    }, [normalizedSearch, optionMap, value])
+    const canAddCustomValue =
+      allowCustomValue &&
+      Boolean(searchValue) &&
+      !hasSelectedSearchValue &&
+      !exactSearchMatch?.disabled
+
+    const addCustomValue = () => {
+      if (!canAddCustomValue) return
+      const nextValue = exactSearchMatch?.value ?? searchValue
+      updateValue([...value, nextValue])
+      setSearch("")
     }
 
     const errorId =
@@ -140,12 +200,13 @@ const VioletMultiCombobox = React.forwardRef<
             ref={ref}
             id={id}
             role="combobox"
+            aria-label={ariaLabel}
             aria-expanded={open}
             aria-invalid={error || undefined}
             aria-describedby={errorId}
             disabled={disabled}
             className={cn(
-              "flex h-9 w-full items-center justify-between rounded-md border border-input bg-background text-foreground px-3 py-1.5 text-base md:text-sm shadow-xs ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:shadow-sm disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 ease-out",
+              "flex h-9 w-full items-center justify-between rounded-md border border-input bg-background text-foreground px-3 py-1.5 text-sm shadow-xs ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:shadow-sm disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 ease-out",
               error && "border-destructive focus-visible:ring-destructive",
               !triggerLabel && "text-muted-foreground",
               className
@@ -157,6 +218,7 @@ const VioletMultiCombobox = React.forwardRef<
           <VioletPopoverContent
             className="w-[var(--radix-popover-trigger-width)] p-0"
             align="start"
+            avoidCollisions={avoidPopoverCollisions}
           >
             <CommandPrimitive
               className="flex h-full w-full flex-col overflow-hidden rounded-md bg-card text-card-foreground"
@@ -168,6 +230,16 @@ const VioletMultiCombobox = React.forwardRef<
                   value={search}
                   onValueChange={setSearch}
                   placeholder={searchPlaceholder}
+                  onKeyDown={(event) => {
+                    if (
+                      event.key === "Enter" &&
+                      canAddCustomValue &&
+                      !hasSearchResult
+                    ) {
+                      event.preventDefault()
+                      addCustomValue()
+                    }
+                  }}
                   className="flex h-9 w-full bg-transparent py-2 text-base md:text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </div>
@@ -201,7 +273,9 @@ const VioletMultiCombobox = React.forwardRef<
                 onWheel={stopWheelPropagation ? (e) => e.stopPropagation() : undefined}
               >
                 <CommandPrimitive.Empty className="py-4 text-center text-sm text-muted-foreground">
-                  {emptyText}
+                  {canAddCustomValue
+                    ? `Press Enter to add "${searchValue}".`
+                    : emptyText}
                 </CommandPrimitive.Empty>
                 {[...groups.entries()].map(([group, items]) => (
                   <CommandPrimitive.Group

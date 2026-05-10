@@ -155,7 +155,7 @@ The palette is a restrained NYU Purple system on cool neutral surfaces. Purple i
 - **Headline** (600, 18px, 1.35): Dialog titles, major panel titles, and high-level component headings.
 - **Title** (600, 16px, 1.25): Card titles, table-adjacent titles, and compact section headers.
 - **Body** (400, 14px, 1.5): Default component text, menu items, table cells, and descriptions.
-- **Mobile Body** (400, 16px, 1.5): Inputs and selects on mobile to prevent iOS Safari auto-zoom.
+- **Mobile Body** (400, 16px, 1.5): Text-entry controls on mobile to prevent iOS Safari auto-zoom. Button-backed select, combobox, and date triggers stay at 14px.
 - **Label** (600, 12px, 0.025em): Table headers, menu group labels, sidebar section labels, and compact metadata.
 
 ### Named Rules
@@ -226,7 +226,7 @@ Violet UI uses a hybrid of borders and quiet shadow tokens. Borders define most 
 
 ### Do:
 - **Do** use NYU Purple for primary action, focus, active state, and selected state.
-- **Do** keep surfaces compact: 36px desktop form controls, 20px modal and card padding, 12px table cell padding.
+- **Do** keep surfaces compact: 36px form controls, 20px modal and card padding, 12px table cell padding.
 - **Do** pair every background token with its matching foreground token, especially in dark mode.
 - **Do** use borders and muted fills before reaching for heavy shadows.
 - **Do** preserve Radix keyboard behavior, accessible names, focus rings, and reduced-motion respect.

@@ -42,6 +42,19 @@ export const WithDescription: Story = {
   ),
 }
 
+export const WithInlineDescription: Story = {
+  render: () => (
+    <VioletFormField
+      label="Short code"
+      htmlFor="short-code"
+      description="Optional, shown beside the label."
+      descriptionPlacement="inline"
+    >
+      <VioletInput id="short-code" placeholder="LAB-1201" />
+    </VioletFormField>
+  ),
+}
+
 export const WithError: Story = {
   render: () => (
     <VioletFormField

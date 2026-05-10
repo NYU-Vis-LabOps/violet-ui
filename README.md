@@ -54,18 +54,18 @@ npx shadcn@latest add \
 | `violet-dropdown-menu` | Dropdown menu with items, separators, and sub-menus |
 | `violet-empty-state` | Empty state placeholder with icon, title, description, and action |
 | `violet-file-upload` | File upload with drag & drop and reset support |
-| `violet-form-field` | Form field layout wrapper with label, description, and error |
+| `violet-form-field` | Form field layout wrapper with label, inline or below-label description, and error |
 | `violet-form-repeater` | Repeatable form rows with add, duplicate, and delete actions |
 | `violet-input` | Input with focus, error, and disabled states |
 | `violet-label` | Label with required indicator |
 | `violet-modal` | Modal dialog with 5 sizes (sm, default, lg, xl, full) |
-| `violet-multi-combobox` | Searchable multi-select combobox with grouping, chips, select all, and clear actions |
+| `violet-multi-combobox` | Searchable multi-select combobox with grouping, chips, custom values, select all, and clear actions |
 | `violet-navbar` | Top navigation bar with responsive hamburger menu |
 | `violet-pagination` | Pagination with page numbers, prev/next, disabled state, and first/last controls |
 | `violet-popover` | Popover with customizable trigger and pointer-safe content |
 | `violet-progress` | Progress bar with 3 sizes and 4 color variants |
 | `violet-radio` | Radio group with label support |
-| `violet-search-input` | Search input with icon and clear button |
+| `violet-search-input` | Search input with icon, clear button, and loading state |
 | `violet-select` | Select dropdown with purple focus ring |
 | `violet-sidebar` | Sidebar navigation with sections, icons, collapsible state, and optional built-in toggle |
 | `violet-skeleton` | Skeleton loading placeholder |
