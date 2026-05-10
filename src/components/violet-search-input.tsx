@@ -5,10 +5,11 @@ import { cn } from "@/lib/utils"
 export interface VioletSearchInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
   onClear?: () => void
+  isLoading?: boolean
 }
 
 const VioletSearchInput = React.forwardRef<HTMLInputElement, VioletSearchInputProps>(
-  ({ className, value, onClear, ...props }, ref) => {
+  ({ className, value, onClear, isLoading = false, ...props }, ref) => {
     const hasValue = value !== undefined && value !== ""
 
     return (
@@ -34,10 +35,21 @@ const VioletSearchInput = React.forwardRef<HTMLInputElement, VioletSearchInputPr
           value={value}
           className={cn(
             "flex h-9 w-full rounded-md border border-input bg-background text-foreground pl-9 pr-8 py-1.5 text-base md:text-sm shadow-xs ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:shadow-sm disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted transition-all duration-200 ease-out [&::-webkit-search-cancel-button]:hidden",
+            isLoading && hasValue && onClear && "pr-14",
             className
           )}
           {...props}
         />
+        {isLoading && (
+          <span
+            className={cn(
+              "absolute top-1/2 h-3.5 w-3.5 -translate-y-1/2 rounded-full border-2 border-muted-foreground/30 border-t-primary motion-safe:animate-spin",
+              hasValue && onClear ? "right-8" : "right-2.5"
+            )}
+            aria-label="Searching"
+            role="status"
+          />
+        )}
         {hasValue && onClear && (
           <button
             type="button"

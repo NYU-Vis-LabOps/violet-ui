@@ -43,7 +43,7 @@ Lab researchers and students at the NYU Visualization Lab, building and using in
 - **Card/Modal padding**: p-5 (20px)
 - **Table cells**: px-3 py-2.5
 - **Navbar height**: h-12 (48px)
-- **Input/Select font**: text-base (16px) on mobile to prevent iOS Safari auto-zoom, md:text-sm on desktop
+- **Text-entry control font**: text-base (16px) on mobile to prevent iOS Safari auto-zoom, md:text-sm on desktop; button-backed select, combobox, and date triggers stay text-sm
 - **Modal**: max-w-[calc(100vw-2rem)] safe margin; close button p-2 -m-2 touch area
 - **Navbar mobile links**: py-3 (~48px touch targets)
 - **Motion**: `motion-safe:` prefix for transform-based animations; respects `prefers-reduced-motion`

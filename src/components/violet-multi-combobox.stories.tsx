@@ -72,6 +72,57 @@ export const WithoutChips: Story = {
   },
 }
 
+export const WithCustomValues: Story = {
+  render: () => {
+    const [value, setValue] = useState<string[]>(["pending", "visitor-review"])
+    return (
+      <VioletMultiCombobox
+        options={options}
+        value={value}
+        onValueChange={setValue}
+        placeholder="Select or add filters..."
+        searchPlaceholder="Search or add a filter..."
+        selectedLabel="filters"
+        allowCustomValue
+        showSelectAll
+      />
+    )
+  },
+}
+
+export const WithAriaLabel: Story = {
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+    return (
+      <VioletMultiCombobox
+        options={options}
+        value={value}
+        onValueChange={setValue}
+        ariaLabel="Request filters"
+        placeholder="Select filters..."
+      />
+    )
+  },
+}
+
+export const AvoidingPopoverCollisions: Story = {
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+    return (
+      <div className="h-44 overflow-auto rounded-md border border-border p-3">
+        <div className="h-24" />
+        <VioletMultiCombobox
+          options={options}
+          value={value}
+          onValueChange={setValue}
+          placeholder="Open near edge..."
+          avoidPopoverCollisions
+        />
+      </div>
+    )
+  },
+}
+
 export const Error: Story = {
   render: () => (
     <VioletMultiCombobox
