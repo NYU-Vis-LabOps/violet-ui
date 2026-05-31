@@ -22,14 +22,14 @@ export default meta
 type Story = StoryObj<typeof VioletCombobox>
 
 const buildings: ComboboxOption[] = [
-  { value: "bobst", label: "Bobst Library" },
-  { value: "kimmel", label: "Kimmel Center" },
-  { value: "silver", label: "Silver Center" },
-  { value: "tisch", label: "Tisch Hall" },
-  { value: "gould", label: "Gould Plaza" },
-  { value: "waverly", label: "Waverly Building" },
-  { value: "meyer", label: "Meyer Hall" },
-  { value: "brown", label: "Brown Building" },
+  { value: "bobst", label: "Bobst Library", description: "70 Washington Square South" },
+  { value: "kimmel", label: "Kimmel Center", description: "Student life" },
+  { value: "silver", label: "Silver Center", description: "Arts and science" },
+  { value: "tisch", label: "Tisch Hall", description: "Business school" },
+  { value: "gould", label: "Gould Plaza", description: "Outdoor plaza" },
+  { value: "waverly", label: "Waverly Building", description: "Academic offices" },
+  { value: "meyer", label: "Meyer Hall", description: "Science building" },
+  { value: "brown", label: "Brown Building", description: "Academic building" },
 ]
 
 export const Basic: Story = {
@@ -121,6 +121,27 @@ export const LargeList: Story = {
           value={value}
           onValueChange={setValue}
           placeholder="Search rooms..."
+        />
+      </div>
+    )
+  },
+}
+
+export const RankedSearch: Story = {
+  render: () => {
+    const [value, setValue] = useState("")
+    return (
+      <div className="w-72">
+        <VioletLabel className="mb-1.5 block">Building</VioletLabel>
+        <VioletCombobox
+          options={[
+            { value: "primary-bobst", label: "Bobst Library", description: "Library" },
+            { value: "kimmel-bobst-event", label: "Kimmel Center", description: "Student life" },
+            { value: "silver-center", label: "Silver Center", description: "Academic" },
+          ]}
+          value={value}
+          onValueChange={setValue}
+          placeholder="Try Bobst..."
         />
       </div>
     )

@@ -1,5 +1,6 @@
 import * as React from "react"
 
+import { rankOptions } from "@/lib/search-ranking"
 import { cn } from "@/lib/utils"
 
 export interface VioletAutocompleteInputOption {
@@ -17,6 +18,7 @@ export interface VioletAutocompleteInputProps {
   emptyText?: string
   allowCustomValue?: boolean
   filterOptions?: boolean
+  rankOptionsLocally?: boolean
   onSearchChange?: (value: string) => void
   onLoadMore?: () => void
   hasMoreOptions?: boolean
@@ -47,6 +49,7 @@ const VioletAutocompleteInput = React.forwardRef<
       emptyText = "No results found.",
       allowCustomValue = false,
       filterOptions = true,
+      rankOptionsLocally = true,
       onSearchChange,
       onLoadMore,
       hasMoreOptions = false,
@@ -83,16 +86,18 @@ const VioletAutocompleteInput = React.forwardRef<
 
     const visibleOptions = React.useMemo(() => {
       if (!filterOptions) return options
-      const query = inputValue.trim().toLowerCase()
-      if (!query || query === displayValue.toLowerCase()) return options
-      return options.filter((option) => {
-        return (
-          option.label.toLowerCase().includes(query) ||
-          option.value.toLowerCase().includes(query) ||
-          option.description?.toLowerCase().includes(query)
-        )
-      })
-    }, [displayValue, filterOptions, inputValue, options])
+      const query = inputValue.trim()
+      if (!query || query.toLowerCase() === displayValue.toLowerCase()) {
+        return options
+      }
+      if (!rankOptionsLocally) return options
+      return rankOptions(
+        query,
+        options,
+        (option) => [option.label, option.description ?? ""],
+        (option) => [option.value]
+      )
+    }, [displayValue, filterOptions, inputValue, options, rankOptionsLocally])
 
     React.useEffect(() => {
       if (!open) {

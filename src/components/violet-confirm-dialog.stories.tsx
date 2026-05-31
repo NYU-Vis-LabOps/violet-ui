@@ -108,3 +108,24 @@ export const OverlayDismissible: Story = {
     )
   },
 }
+
+export const WithCloseButton: Story = {
+  render: () => {
+    const [open, setOpen] = useState(false)
+    return (
+      <VioletConfirmDialog
+        open={open}
+        onOpenChange={setOpen}
+        title="Discard draft?"
+        description="This non-destructive flow opts into the close affordance."
+        confirmLabel="Discard"
+        showCloseButton
+        onConfirm={() => setOpen(false)}
+      >
+        <VioletConfirmDialogTrigger asChild>
+          <VioletButton variant="outline">Open dialog with close</VioletButton>
+        </VioletConfirmDialogTrigger>
+      </VioletConfirmDialog>
+    )
+  },
+}

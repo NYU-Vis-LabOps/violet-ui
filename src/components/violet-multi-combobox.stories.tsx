@@ -90,6 +90,41 @@ export const WithCustomValues: Story = {
   },
 }
 
+export const RankedSearch: Story = {
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+    return (
+      <VioletMultiCombobox
+        options={[
+          {
+            value: "applicant-name",
+            label: "Applicant name",
+            group: "People",
+            description: "Primary visible field",
+          },
+          {
+            value: "netid-applicant",
+            label: "Net ID",
+            group: "People",
+            description: "Hidden applicant identifier",
+          },
+          {
+            value: "access-start-date",
+            label: "Access start date",
+            group: "Access",
+            description: "Schedule",
+          },
+        ]}
+        value={value}
+        onValueChange={setValue}
+        placeholder="Select filters..."
+        searchPlaceholder="Try applicant..."
+        selectedLabel="filters"
+      />
+    )
+  },
+}
+
 export const WithAriaLabel: Story = {
   render: () => {
     const [value, setValue] = useState<string[]>([])
