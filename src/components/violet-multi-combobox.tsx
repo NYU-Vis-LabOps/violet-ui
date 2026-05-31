@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Command as CommandPrimitive } from "cmdk"
 
+import { rankOptions } from "@/lib/search-ranking"
 import { cn } from "@/lib/utils"
 import {
   VioletPopover,
@@ -34,6 +35,8 @@ export interface VioletMultiComboboxProps {
   allowCustomValue?: boolean
   stopWheelPropagation?: boolean
   avoidPopoverCollisions?: boolean
+  rankOptionsLocally?: boolean
+  onSearchChange?: (value: string) => void
   renderOption?: (
     option: VioletMultiComboboxOption,
     selected: boolean
@@ -66,6 +69,8 @@ const VioletMultiCombobox = React.forwardRef<
       allowCustomValue = false,
       stopWheelPropagation = true,
       avoidPopoverCollisions,
+      rankOptionsLocally = true,
+      onSearchChange,
       renderOption,
       renderSelectedLabel,
       className,
@@ -106,16 +111,26 @@ const VioletMultiCombobox = React.forwardRef<
       return `${selectedOptions.length} ${selectedLabel} selected`
     }, [renderSelectedLabel, selectedLabel, selectedOptions])
 
+    const filteredOptions = React.useMemo(() => {
+      if (!rankOptionsLocally) return options
+      return rankOptions(
+        search,
+        options,
+        (option) => [option.label, option.description ?? ""],
+        (option) => [option.value]
+      )
+    }, [options, rankOptionsLocally, search])
+
     const groups = React.useMemo(() => {
       const map = new Map<string, VioletMultiComboboxOption[]>()
-      for (const option of options) {
+      for (const option of filteredOptions) {
         const key = option.group ?? ""
         const items = map.get(key) ?? []
         items.push(option)
         map.set(key, items)
       }
       return map
-    }, [options])
+    }, [filteredOptions])
 
     const updateValue = (nextValue: string[]) => {
       onValueChange?.(nextValue)
@@ -157,13 +172,8 @@ const VioletMultiCombobox = React.forwardRef<
     }, [normalizedSearch, options])
     const hasSearchResult = React.useMemo(() => {
       if (!normalizedSearch) return options.length > 0
-      return options.some(
-        (option) =>
-          option.value.toLowerCase().includes(normalizedSearch) ||
-          option.label.toLowerCase().includes(normalizedSearch) ||
-          option.description?.toLowerCase().includes(normalizedSearch)
-      )
-    }, [normalizedSearch, options])
+      return filteredOptions.length > 0
+    }, [filteredOptions.length, normalizedSearch, options.length])
     const hasSelectedSearchValue = React.useMemo(() => {
       if (!normalizedSearch) return false
       return value.some((selectedValue) => {
@@ -222,13 +232,16 @@ const VioletMultiCombobox = React.forwardRef<
           >
             <CommandPrimitive
               className="flex h-full w-full flex-col overflow-hidden rounded-md bg-card text-card-foreground"
-              shouldFilter={true}
+              shouldFilter={false}
             >
               <div className="flex items-center border-b border-border px-3">
                 <SearchIcon />
                 <CommandPrimitive.Input
                   value={search}
-                  onValueChange={setSearch}
+                  onValueChange={(nextSearch) => {
+                    setSearch(nextSearch)
+                    onSearchChange?.(nextSearch)
+                  }}
                   placeholder={searchPlaceholder}
                   onKeyDown={(event) => {
                     if (

@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Command as CommandPrimitive } from "cmdk"
 
+import { rankOptions } from "@/lib/search-ranking"
 import { cn } from "@/lib/utils"
 import {
   VioletPopover,
@@ -12,6 +13,7 @@ export interface ComboboxOption {
   value: string
   label: string
   group?: string
+  description?: string
 }
 
 export interface VioletComboboxProps {
@@ -25,6 +27,8 @@ export interface VioletComboboxProps {
   error?: boolean
   errorMessage?: string
   stopWheelPropagation?: boolean
+  rankOptionsLocally?: boolean
+  onSearchChange?: (value: string) => void
   className?: string
   id?: string
 }
@@ -42,6 +46,8 @@ const VioletCombobox = React.forwardRef<HTMLButtonElement, VioletComboboxProps>(
       error = false,
       errorMessage,
       stopWheelPropagation = true,
+      rankOptionsLocally = true,
+      onSearchChange,
       className,
       id,
     },
@@ -55,16 +61,26 @@ const VioletCombobox = React.forwardRef<HTMLButtonElement, VioletComboboxProps>(
       return match?.label ?? (allowCustomValue && value ? value : "")
     }, [options, value, allowCustomValue])
 
+    const filteredOptions = React.useMemo(() => {
+      if (!rankOptionsLocally) return options
+      return rankOptions(
+        search,
+        options,
+        (option) => [option.label, option.description ?? ""],
+        (option) => [option.value]
+      )
+    }, [options, rankOptionsLocally, search])
+
     const groups = React.useMemo(() => {
       const map = new Map<string, ComboboxOption[]>()
-      for (const opt of options) {
+      for (const opt of filteredOptions) {
         const key = opt.group ?? ""
         const arr = map.get(key) ?? []
         arr.push(opt)
         map.set(key, arr)
       }
       return map
-    }, [options])
+    }, [filteredOptions])
 
     const handleSelect = (selectedValue: string) => {
       onValueChange?.(selectedValue === value ? "" : selectedValue)
@@ -130,7 +146,7 @@ const VioletCombobox = React.forwardRef<HTMLButtonElement, VioletComboboxProps>(
           >
             <CommandPrimitive
               className="flex h-full w-full flex-col overflow-hidden rounded-md bg-card text-card-foreground"
-              shouldFilter={true}
+              shouldFilter={false}
             >
               <div className="flex items-center border-b border-border px-3">
                 <svg
@@ -149,7 +165,10 @@ const VioletCombobox = React.forwardRef<HTMLButtonElement, VioletComboboxProps>(
                 </svg>
                 <CommandPrimitive.Input
                   value={search}
-                  onValueChange={setSearch}
+                  onValueChange={(nextSearch) => {
+                    setSearch(nextSearch)
+                    onSearchChange?.(nextSearch)
+                  }}
                   onKeyDown={handleKeyDown}
                   placeholder="Search..."
                   className="flex h-9 w-full bg-transparent py-2 text-base md:text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
@@ -196,7 +215,14 @@ const VioletCombobox = React.forwardRef<HTMLButtonElement, VioletComboboxProps>(
                             </svg>
                           )}
                         </span>
-                        {opt.label}
+                        <span className="min-w-0">
+                          <span className="block truncate">{opt.label}</span>
+                          {opt.description && (
+                            <span className="block truncate text-xs text-muted-foreground">
+                              {opt.description}
+                            </span>
+                          )}
+                        </span>
                       </CommandPrimitive.Item>
                     ))}
                   </CommandPrimitive.Group>

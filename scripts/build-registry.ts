@@ -10,6 +10,7 @@ const REGISTRY_BASE_URL = "https://nyu-vis-labops.github.io/violet-ui/r"
 const REGISTRY_DEP_URLS: Record<string, string> = {
   "violet-theme": `${REGISTRY_BASE_URL}/styles/violet-theme.json`,
   "violet-utils": `${REGISTRY_BASE_URL}/lib/violet-utils.json`,
+  "violet-search-ranking": `${REGISTRY_BASE_URL}/lib/violet-search-ranking.json`,
 }
 
 // Known npm package prefixes for dependency detection
@@ -260,20 +261,43 @@ function buildTheme(): RegistryItem {
 }
 
 function buildUtils(): RegistryItem {
-  const utilsPath = path.join(ROOT, "src", "lib", "utils.ts")
-  const content = fs.readFileSync(utilsPath, "utf-8")
+  return buildLib(
+    "utils.ts",
+    "violet-utils",
+    "Violet Utils",
+    "Utility functions (cn) for Violet UI"
+  )
+}
+
+function buildSearchRanking(): RegistryItem {
+  return buildLib(
+    "search-ranking.ts",
+    "violet-search-ranking",
+    "Violet Search Ranking",
+    "Ranked search helpers for Violet UI selectable controls"
+  )
+}
+
+function buildLib(
+  filename: string,
+  name: string,
+  title: string,
+  description: string
+): RegistryItem {
+  const libPath = path.join(ROOT, "src", "lib", filename)
+  const content = fs.readFileSync(libPath, "utf-8")
 
   return {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",
-    name: "violet-utils",
+    name,
     type: "registry:lib",
-    title: "Violet Utils",
-    description: "Utility functions (cn) for Violet UI",
+    title,
+    description,
     dependencies: extractImports(content),
     registryDependencies: [],
     files: [
       {
-        path: "lib/utils.ts",
+        path: `lib/${filename}`,
         type: "registry:lib",
         content,
       },
@@ -296,6 +320,9 @@ function buildComponent(filename: string): RegistryItem {
   const registryDepsShort = [...(meta.registryDeps || [])]
   if (content.includes("@/lib/utils")) {
     registryDepsShort.push("violet-utils")
+  }
+  if (content.includes("@/lib/search-ranking")) {
+    registryDepsShort.push("violet-search-ranking")
   }
   // Auto-detect sibling component imports (from "./violet-*")
   const siblingRegex = /from\s+["']\.\/([^"']+)["']/g
@@ -385,6 +412,18 @@ function main() {
   )
   indexItems.push({ name: utils.name, type: utils.type, description: utils.description })
   console.log(`  ✓ lib/violet-utils.json`)
+
+  const searchRanking = buildSearchRanking()
+  fs.writeFileSync(
+    path.join(PUBLIC_R, "lib", "violet-search-ranking.json"),
+    JSON.stringify(searchRanking, null, 2)
+  )
+  indexItems.push({
+    name: searchRanking.name,
+    type: searchRanking.type,
+    description: searchRanking.description,
+  })
+  console.log(`  ✓ lib/violet-search-ranking.json`)
 
   // 3. Build components
   const componentsDir = path.join(ROOT, "src", "components")

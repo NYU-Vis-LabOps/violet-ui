@@ -45,6 +45,24 @@ const people: VioletAutocompleteInputOption[] = [
   },
 ]
 
+const rankedPeople: VioletAutocompleteInputOption[] = [
+  {
+    value: "ada-lovelace",
+    label: "Ada Lovelace",
+    description: "Mathematics",
+  },
+  {
+    value: "grace-ada-support",
+    label: "Grace Hopper",
+    description: "Computer science",
+  },
+  {
+    value: "katherine-johnson",
+    label: "Katherine Johnson",
+    description: "Flight mathematics",
+  },
+]
+
 export const Default: Story = {
   render: () => {
     const [value, setValue] = useState("")
@@ -94,6 +112,7 @@ export const RemoteLoading: Story = {
           onValueChange={setValue}
           placeholder="Remote search..."
           filterOptions={false}
+          rankOptionsLocally={false}
           onSearchChange={setQuery}
           onLoadMore={() => setPage((current) => current + 1)}
           hasMoreOptions={visible.length < people.length}
@@ -103,6 +122,20 @@ export const RemoteLoading: Story = {
           Search query: {query || "none"}
         </p>
       </div>
+    )
+  },
+}
+
+export const RankedSearch: Story = {
+  render: () => {
+    const [value, setValue] = useState("")
+    return (
+      <VioletAutocompleteInput
+        options={rankedPeople}
+        value={value}
+        onValueChange={setValue}
+        placeholder="Try Ada or mathematics..."
+      />
     )
   },
 }

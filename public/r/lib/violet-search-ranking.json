@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "violet-search-ranking",
+  "type": "registry:lib",
+  "title": "Violet Search Ranking",
+  "description": "Ranked search helpers for Violet UI selectable controls",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "lib/search-ranking.ts",
+      "type": "registry:lib",
+      "content": "export interface RankableOption {\n  label: string\n  value: string\n  description?: string\n}\n\nexport function scoreToken(\n  token: string,\n  visibleFields: string[],\n  hiddenFields: string[]\n): number {\n  const t = token.toLowerCase()\n  const visible = visibleFields.map((field) => field.toLowerCase())\n  const hidden = hiddenFields.map((field) => field.toLowerCase())\n\n  if (visible.some((field) => field === t)) return 0\n  if (visible.some((field) => field.startsWith(t))) return 1\n  if (visible.some((field) => field.includes(` ${t}`))) return 2\n  if (visible.some((field) => field.includes(t))) return 3\n  if (hidden.some((field) => field.includes(t))) return 4\n  return Infinity\n}\n\nexport function rankOptions<T extends RankableOption>(\n  query: string,\n  options: T[],\n  getVisibleFields: (option: T) => string[],\n  getHiddenFields: (option: T) => string[]\n): T[] {\n  const tokens = query\n    .trim()\n    .toLowerCase()\n    .split(/\\s+/)\n    .filter(Boolean)\n\n  if (!tokens.length) return options\n\n  const scored: Array<{ option: T; score: number; index: number }> = []\n  options.forEach((option, index) => {\n    const tokenScores = tokens.map((token) =>\n      scoreToken(token, getVisibleFields(option), getHiddenFields(option))\n    )\n    if (tokenScores.some((score) => score === Infinity)) return\n    scored.push({\n      option,\n      score: tokenScores.reduce((total, score) => total + score, 0),\n      index,\n    })\n  })\n\n  scored.sort((a, b) => a.score - b.score || a.index - b.index)\n  return scored.map((item) => item.option)\n}\n"
+    }
+  ]
+}
